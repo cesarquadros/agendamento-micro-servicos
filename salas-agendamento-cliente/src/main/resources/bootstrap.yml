@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: salas-agendamento-cliente
+#  cloud:
+#    config:
+#      uri: http://localhost:9090

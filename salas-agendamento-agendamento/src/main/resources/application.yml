@@ -1,0 +1,20 @@
+salas-agendamento-agendamento:
+  request:
+    mapping:
+      salvar: /agendamento
+      listar: /agendamento
+      listarFiltro: /agendamento/filtro
+      
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9091/eureka/
+    
+spring:
+  data.mongodb:
+    host: localhost
+    port: 27017
+    database: sala-agendamento    
+
+server:
+  port: 8081
