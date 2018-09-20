@@ -2,8 +2,10 @@ package br.com.salasagendamento.controller;
 
 import java.util.List;
 
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +13,7 @@ import br.com.salasagendamento.api.AgendamentoContract;
 import br.com.salasagendamento.integration.ClienteIntegration;
 import br.com.salasagendamento.model.document.Agendamento;
 import br.com.salasagendamento.model.document.Cliente;
+import br.com.salasagendamento.model.dto.AgendamentoDTO;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.service.AgendamentoService;
 import io.swagger.annotations.Api;
@@ -23,16 +26,18 @@ public class AgendamentoController implements AgendamentoContract{
 	AgendamentoService agendamentoService;
 	
 	@Autowired
-	ClienteIntegration cli;
+	ClienteIntegration clienteIntegration;
 	
 	@Override
-	public ResponseEntity<Agendamento> salvar(@RequestBody Agendamento agendamento) {
+	public ResponseEntity<?> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
 		
-		Cliente cliente = this.cli.findByCpf(agendamento.getCliente().getCpf()).getBody();
+		Cliente cliente = this.clienteIntegration.findByCpf(agendamentoDTO.getCpfCliente()).getBody();
 		
-		agendamento.setCliente(cliente);
-		
-		return ResponseEntity.ok(this.agendamentoService.salvar(agendamento));
+		if(!ObjectUtils.isEmpty(cliente)) {
+			Agendamento agendamento = this.agendamentoService.converterDTO(agendamentoDTO, cliente);
+			return ResponseEntity.ok(this.agendamentoService.salvar(agendamento));
+		}
+		return ResponseEntity.status(HttpStatus.SC_NO_CONTENT).body(agendamentoDTO);
 	}
 
 	@Override

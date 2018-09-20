@@ -1,25 +1,15 @@
-package br.com.salasagendamento.model.document;
+package br.com.salasagendamento.model.dto;
 
 import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Builder
-@Document
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class Cliente {
+public class ClienteDTO {
 
-	@Id
-	private String id;
-	//private Autenticacao autenticacao;
 	private String nome;
 	private String sobrenome;
 	private String telFixo;

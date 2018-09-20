@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.salasagendamento.model.document.Agendamento;
+import br.com.salasagendamento.model.dto.AgendamentoDTO;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 
 public interface AgendamentoContract {
 	
 	@PostMapping(value = "${salas-agendamento-agendamento.request.mapping.salvar}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<Agendamento> salvar(@RequestBody Agendamento agendamento);
+	ResponseEntity<?> salvar(@RequestBody AgendamentoDTO agendamentoDTO);
 	
 	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.listar}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<Agendamento>> listar();

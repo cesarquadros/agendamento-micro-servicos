@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
 
+import br.com.salasagendamento.integration.ClienteIntegration;
 import br.com.salasagendamento.model.document.Agendamento;
+import br.com.salasagendamento.model.document.Cliente;
 import br.com.salasagendamento.model.document.QAgendamento;
+import br.com.salasagendamento.model.dto.AgendamentoDTO;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.repository.AgendamentoRepository;
 import br.com.salasagendamento.service.AgendamentoService;
@@ -18,6 +21,9 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 
 	@Autowired
 	private AgendamentoRepository agendamentoRepository;
+	
+	@Autowired
+	ClienteIntegration clienteIntegration;
 	
 	@Override
 	public Agendamento salvar(Agendamento agendamento) {
@@ -38,5 +44,17 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 				between(filtroDTO.getDataInicial(), filtroDTO.getDataFinal()));
 		
 		return (List<Agendamento>) this.agendamentoRepository.findAll(builder);
+	}
+
+	@Override
+	public Agendamento converterDTO(AgendamentoDTO agendamentoDTO, Cliente cliente) {
+		
+		new Agendamento();
+		return  Agendamento
+				.builder()
+				.cliente(cliente)
+				.dataAgendamento(agendamentoDTO.getDataAgendamento())
+				.status(agendamentoDTO.getStatus())
+				.build();
 	}
 }
