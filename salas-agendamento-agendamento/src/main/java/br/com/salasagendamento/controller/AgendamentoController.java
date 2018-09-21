@@ -35,7 +35,7 @@ public class AgendamentoController implements AgendamentoContract{
 		Resposta<Agendamento> resposta = new Resposta<>();
 		Cliente cliente = this.clienteIntegration.findByCpf(agendamentoDTO.getCpfCliente()).getBody();
 		
-		if(ObjectUtils.isEmpty(cliente)) {
+		if(ObjectUtils.isEmpty(cliente.getId())) {
 			errosValidacao.add("Cliente não encontrado");
 			resposta.setValido(false);
 			resposta.setMensagens(errosValidacao);
