@@ -1,5 +1,6 @@
 package br.com.salasagendamento.service.impl;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +50,15 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 	@Override
 	public Agendamento converterDTO(AgendamentoDTO agendamentoDTO, Cliente cliente) {
 		
+		LocalTime hora = LocalTime.parse(agendamentoDTO.getHora());
+		
 		new Agendamento();
 		return  Agendamento
 				.builder()
 				.cliente(cliente)
 				.dataAgendamento(agendamentoDTO.getDataAgendamento())
 				.status(agendamentoDTO.getStatus())
+				.hora(hora)
 				.build();
 	}
 }

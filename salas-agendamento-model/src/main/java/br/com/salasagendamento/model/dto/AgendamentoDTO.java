@@ -13,12 +13,8 @@ import lombok.Data;
 @Document
 public class AgendamentoDTO {
 
-	//private Horario horario;
 	private String cpfCliente;
-	//private Sala sala;
 	private LocalDate dataAgendamento;
 	private String status;
-	
-	public enum Horario {
-	}
+	private String hora;
 }
