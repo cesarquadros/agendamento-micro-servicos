@@ -58,7 +58,7 @@ public class ClienteController implements ClienteContract{
 		Cliente cliente = this.clienteService.findByCpf(cpf);
 		Resposta<Cliente> resposta = new Resposta<>();
 		
-		if(ObjectUtils.isEmpty(cliente)) {
+			if(ObjectUtils.isEmpty(cliente)) {
 			resposta.setValido(false);
 			resposta.setConteudo(null);
 			return resposta;
