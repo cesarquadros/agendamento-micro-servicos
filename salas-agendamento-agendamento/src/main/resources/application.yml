@@ -4,6 +4,7 @@ salas-agendamento-agendamento:
       salvar: /agendamento
       listar: /agendamento
       listarFiltro: /agendamento/filtro
+      listarFiltroDataESala: agendamento/filtro-data-sala
   horarios:
     08:00,
     09:00,

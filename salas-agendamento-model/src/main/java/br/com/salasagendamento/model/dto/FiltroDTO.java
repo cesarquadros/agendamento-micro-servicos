@@ -18,4 +18,6 @@ public class FiltroDTO {
 	private LocalDate dataInicial;
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate  dataFinal;
+	private String idSala;
+	private String status;
 }

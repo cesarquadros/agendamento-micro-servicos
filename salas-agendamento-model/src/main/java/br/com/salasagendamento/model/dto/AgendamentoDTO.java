@@ -17,4 +17,5 @@ public class AgendamentoDTO {
 	private LocalDate dataAgendamento;
 	private String status;
 	private String hora;
+	private String idSala;
 }

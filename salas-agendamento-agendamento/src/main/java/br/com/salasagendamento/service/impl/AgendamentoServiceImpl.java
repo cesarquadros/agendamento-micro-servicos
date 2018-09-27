@@ -26,6 +26,8 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 	@Autowired
 	ClienteIntegration clienteIntegration;
 	
+	private String STATUS_ABERTO = "aberto";
+	
 	@Override
 	public Agendamento salvar(Agendamento agendamento) {
 		return this.agendamentoRepository.save(agendamento);
@@ -41,8 +43,18 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 		
 		BooleanBuilder builder = new BooleanBuilder();
 		
-		builder.and(QAgendamento.agendamento.dataAgendamento.
-				between(filtroDTO.getDataInicial(), filtroDTO.getDataFinal()));
+		builder.and(QAgendamento.agendamento.dataAgendamento.between(filtroDTO.getDataInicial(), filtroDTO.getDataFinal()));
+		
+		return (List<Agendamento>) this.agendamentoRepository.findAll(builder);
+	}
+	
+	@Override
+	public List<Agendamento> listarPorDataESala(FiltroDTO filtroDTO) {
+		
+		BooleanBuilder builder = new BooleanBuilder();
+		builder.and(QAgendamento.agendamento.dataAgendamento.eq(filtroDTO.getDataInicial()));
+		builder.and(QAgendamento.agendamento.sala.id.eq(filtroDTO.getIdSala()));
+		builder.and(QAgendamento.agendamento.status.eq(STATUS_ABERTO));
 		
 		return (List<Agendamento>) this.agendamentoRepository.findAll(builder);
 	}
@@ -61,4 +73,5 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 				.hora(hora)
 				.build();
 	}
+
 }

@@ -27,4 +27,5 @@ public class Agendamento {
 	private LocalDate dataAgendamento;
 	private String status;
 	private LocalTime hora;
+	private Sala sala;
 }

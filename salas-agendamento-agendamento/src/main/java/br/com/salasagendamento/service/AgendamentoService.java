@@ -12,5 +12,6 @@ public interface AgendamentoService {
 	Agendamento salvar(Agendamento agendamento);
 	List<Agendamento> listar();
 	List<Agendamento> listarPorFiltro(FiltroDTO filtroDTO);
+	List<Agendamento> listarPorDataESala(FiltroDTO filtroDTO);
 	Agendamento converterDTO(AgendamentoDTO agendamentoDTO, Cliente cliente);
 }
