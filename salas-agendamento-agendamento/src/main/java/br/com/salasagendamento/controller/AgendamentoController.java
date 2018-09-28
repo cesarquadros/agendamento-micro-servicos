@@ -70,25 +70,6 @@ public class AgendamentoController implements AgendamentoContract {
 		List<Agendamento> agendamentos = this.agendamentoService.listar();
 
 		this.horarioIntegration.getHorarios();
-		
-		/*List<LocalTime> horariosDisponiveis = new ArrayList<>();
-
-		horarios.forEach(horario -> {
-			agendamentos.forEach(agendamento -> {
-				if (horario.equals(agendamento.getHora())) {
-					return;
-				}
-				horariosDisponiveis.add(horario);
-			});
-		});
-
-		horarios.stream().forEach(horario -> {
-			Optional<Agendamento> local = agendamentos.stream().filter(a -> a.getHora().equals(horario)).findAny();
-
-			if (!local.isPresent()) {
-				horariosDisponiveis.add(horario);
-			}
-		});*/
 
 		resposta.setConteudo(agendamentos);
 

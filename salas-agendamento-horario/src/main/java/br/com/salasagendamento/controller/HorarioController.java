@@ -1,15 +1,14 @@
 package br.com.salasagendamento.controller;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salasagendamento.api.HorarioContract;
-import br.com.salasagendamento.integration.AgendamentoIntegration;
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.document.Agendamento;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.service.HorarioService;
 import io.swagger.annotations.Api;
@@ -20,9 +19,6 @@ public class HorarioController implements HorarioContract{
 
 	@Autowired
 	private HorarioService horarioService;
-	
-	@Autowired
-	private AgendamentoIntegration agendamentoIntegration;
 	
 	@Override
 	public Resposta<List<LocalTime>> getHorarios() {
@@ -37,10 +33,17 @@ public class HorarioController implements HorarioContract{
 	@Override
 	public Resposta<List<LocalTime>> getHorariosLivres(FiltroDTO filtroDTO) {
 		Resposta<List<LocalTime>> resposta = new Resposta<>();
-		Resposta<List<Agendamento>> listarPorDataESala = agendamentoIntegration.listarPorDataESala(filtroDTO);
 		
-		resposta.setConteudo(null);
+		List<LocalTime> horariosDisponiveis = this.horarioService.getHorariosDisponiveis(filtroDTO);
+		List<String> erros = new ArrayList<>(); 
 		
-		return null;
+		if(horariosDisponiveis.size() == 0) {
+			erros.add("Não existem horarios disponiveis");
+			resposta.setMensagens(erros);
+		}
+		
+		resposta.setConteudo(horariosDisponiveis);
+		
+		return resposta;
 	}
 }
