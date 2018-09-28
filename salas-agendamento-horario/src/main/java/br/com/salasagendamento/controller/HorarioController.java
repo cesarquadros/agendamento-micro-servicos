@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.salasagendamento.api.HorarioContract;
 import br.com.salasagendamento.model.Resposta;
 import br.com.salasagendamento.model.dto.FiltroDTO;
+import br.com.salasagendamento.model.messages.Message;
+import br.com.salasagendamento.model.messages.MessageHelper;
 import br.com.salasagendamento.service.HorarioService;
 import io.swagger.annotations.Api;
 
@@ -19,6 +21,8 @@ public class HorarioController implements HorarioContract{
 
 	@Autowired
 	private HorarioService horarioService;
+	
+	private Message message;
 	
 	@Override
 	public Resposta<List<LocalTime>> getHorarios() {
@@ -37,8 +41,8 @@ public class HorarioController implements HorarioContract{
 		List<LocalTime> horariosDisponiveis = this.horarioService.getHorariosDisponiveis(filtroDTO);
 		List<String> erros = new ArrayList<>(); 
 		
-		if(horariosDisponiveis.size() == 0) {
-			erros.add("Não existem horarios disponiveis");
+		if(horariosDisponiveis.isEmpty()) {
+			erros.add(this.message.getMessage(MessageHelper.HORARIOS_NAO_DISPONIVEIS));
 			resposta.setMensagens(erros);
 		}
 		

@@ -17,9 +17,13 @@ import br.com.salasagendamento.model.document.Cliente;
 import br.com.salasagendamento.model.document.Sala;
 import br.com.salasagendamento.model.dto.AgendamentoDTO;
 import br.com.salasagendamento.model.dto.FiltroDTO;
+import br.com.salasagendamento.model.messages.Message;
+import br.com.salasagendamento.model.messages.MessageHelper;
 import br.com.salasagendamento.service.AgendamentoService;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @Api(value = "Agendamento", tags = "Agendamento")
 public class AgendamentoController implements AgendamentoContract {
@@ -32,7 +36,10 @@ public class AgendamentoController implements AgendamentoContract {
 
 	@Autowired
 	private HorarioIntegration horarioIntegration;
-
+	
+	@Autowired
+	private Message message;
+	
 	@Override
 	public Resposta<Agendamento> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
 
@@ -41,7 +48,7 @@ public class AgendamentoController implements AgendamentoContract {
 		Resposta<Cliente> cliente = this.clienteIntegration.findByCpf(agendamentoDTO.getCpfCliente());
 
 		if (ObjectUtils.isEmpty(cliente.getConteudo())) {
-			errosValidacao.add("Cliente não encontrado");
+			errosValidacao.add(this.message.getMessage(MessageHelper.CLIENTE_INEXISTENTE));
 			resposta.setValido(false);
 			resposta.setMensagens(errosValidacao);
 			return resposta;
@@ -59,6 +66,8 @@ public class AgendamentoController implements AgendamentoContract {
 		
 		agendamento.setSala(sala);
 		agendamento = this.agendamentoService.salvar(agendamento);
+		
+		log.info(this.message.getMessage(MessageHelper.AGENDAMENTO_SUCESSO));
 		resposta.setConteudo(agendamento);
 		return resposta;
 	}
