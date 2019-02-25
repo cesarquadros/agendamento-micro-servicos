@@ -29,7 +29,7 @@ public class ClienteController implements ClienteContract{
 	public Resposta<Cliente> salvar(@RequestBody ClienteDTO clienteDTO) {
 		
 		Cliente cliente = clienteService.converterDTO(clienteDTO);
-		Resposta<Cliente> resposta = new Resposta<>();
+		Resposta<Cliente> resposta = new Resposta<Cliente>();
 		List<String> erros = this.validador.validarCliente(cliente);
 
 		if(!erros.isEmpty()) {
@@ -46,7 +46,7 @@ public class ClienteController implements ClienteContract{
 
 	public Resposta<List<Cliente>> listarClientes() {
 		
-		Resposta<List<Cliente>> resposta = new Resposta<>();
+		Resposta<List<Cliente>> resposta = new Resposta<List<Cliente>>();
 		List<Cliente> clientes = this.clienteService.listarClientes();
 		resposta.setConteudo(clientes);
 		
@@ -56,7 +56,7 @@ public class ClienteController implements ClienteContract{
 	public Resposta<Cliente> findByCpf(@PathVariable(value = "cpf")String cpf) {
 		
 		Cliente cliente = this.clienteService.findByCpf(cpf);
-		Resposta<Cliente> resposta = new Resposta<>();
+		Resposta<Cliente> resposta = new Resposta<Cliente>();
 		
 			if(ObjectUtils.isEmpty(cliente)) {
 			resposta.setValido(false);

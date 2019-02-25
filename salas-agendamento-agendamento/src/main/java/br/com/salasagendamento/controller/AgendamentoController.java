@@ -3,6 +3,7 @@ package br.com.salasagendamento.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,19 +15,18 @@ import br.com.salasagendamento.integration.HorarioIntegration;
 import br.com.salasagendamento.model.Resposta;
 import br.com.salasagendamento.model.document.Agendamento;
 import br.com.salasagendamento.model.document.Cliente;
-import br.com.salasagendamento.model.document.Sala;
 import br.com.salasagendamento.model.dto.AgendamentoDTO;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.model.messages.Message;
 import br.com.salasagendamento.model.messages.MessageHelper;
 import br.com.salasagendamento.service.AgendamentoService;
 import io.swagger.annotations.Api;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 @Api(value = "Agendamento", tags = "Agendamento")
 public class AgendamentoController implements AgendamentoContract {
+	
+	private Logger log = org.slf4j.LoggerFactory.getLogger(AgendamentoController.class);
 
 	@Autowired
 	private AgendamentoService agendamentoService;
@@ -56,15 +56,6 @@ public class AgendamentoController implements AgendamentoContract {
 		
 		Agendamento agendamento = this.agendamentoService.converterDTO(agendamentoDTO, cliente.getConteudo());
 		
-		new Sala();
-		Sala sala = Sala
-				.builder()
-				.id("idsala")
-				.descricao("Sala Grande")
-				.numeroSala(1)
-				.build();
-		
-		agendamento.setSala(sala);
 		agendamento = this.agendamentoService.salvar(agendamento);
 		
 		log.info(this.message.getMessage(MessageHelper.AGENDAMENTO_SUCESSO));
@@ -78,7 +69,7 @@ public class AgendamentoController implements AgendamentoContract {
 		Resposta<List<Agendamento>> resposta = new Resposta<>();
 		List<Agendamento> agendamentos = this.agendamentoService.listar();
 
-		this.horarioIntegration.getHorarios();
+//		this.horarioIntegration.getHorarios();
 
 		resposta.setConteudo(agendamentos);
 

@@ -47,7 +47,9 @@ public class HorarioServiceImpl implements HorarioService {
 		List<LocalTime> horariosDisponiveis = new ArrayList<>();
 
 		horarios.stream().forEach(horario -> {
-			Optional<Agendamento> local = agendamentos.getConteudo().stream().filter(a -> a.getHora().equals(horario))
+			Optional<Agendamento> local = agendamentos.getConteudo()
+					.stream()
+					.filter(a -> a.getHora().equals(horario))
 					.findAny();
 
 			if (!local.isPresent()) {

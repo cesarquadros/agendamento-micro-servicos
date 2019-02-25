@@ -21,16 +21,17 @@ salas-agendamento-agendamento:
     19:00,
     20:00
       
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:9091/eureka/
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:9091/eureka/
     
 spring:
   data.mongodb:
-    host: localhost
-    port: 27017
-    database: sala-agendamento    
+    uri: mongodb://localhost:27017/sala-agendamento-clientes
+#    host: localhost
+ #   port: 27017
+  #  database: sala-agendamento-agendamentos
 
 server:
   port: 8081

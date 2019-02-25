@@ -14,7 +14,7 @@ import br.com.salasagendamento.service.ClienteService;
 public class ClienteServiceImpl implements ClienteService {
 	
 	@Autowired
-	ClienteRepository clienteRepository;
+	private ClienteRepository clienteRepository;
 
 	public Cliente salvar(Cliente cliente) {
 		return this.clienteRepository.save(cliente);
@@ -33,17 +33,18 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	public Cliente converterDTO(ClienteDTO clienteDTO) {
-		new Cliente();
-		return Cliente
-				.builder()
-				.cpf(clienteDTO.getCpf())
-				.dataNascimento(clienteDTO.getDataNascimento())
-				.email(clienteDTO.getEmail())
-				.nome(clienteDTO.getNome())
-				.sobrenome(clienteDTO.getSobrenome())
-				.sexo(clienteDTO.getSexo())
-				.telCelular(clienteDTO.getTelCelular())
-				.telFixo(clienteDTO.getTelFixo())
-				.build();
+		
+		Cliente cliente = new Cliente();
+		
+		cliente.setCpf(clienteDTO.getCpf());
+		cliente.setDataNascimento(clienteDTO.getDataNascimento());
+		cliente.setEmail(clienteDTO.getEmail());
+		cliente.setNome(clienteDTO.getNome());
+		cliente.setSobrenome(clienteDTO.getSobrenome());
+		cliente.setSexo(clienteDTO.getSexo());
+		cliente.setTelCelular(clienteDTO.getTelCelular());
+		cliente.setTelFixo(clienteDTO.getTelFixo());
+		
+		return cliente;
 	}
 }

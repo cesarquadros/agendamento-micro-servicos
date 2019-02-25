@@ -24,7 +24,7 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 	private AgendamentoRepository agendamentoRepository;
 	
 	@Autowired
-	ClienteIntegration clienteIntegration;
+	private ClienteIntegration clienteIntegration;
 	
 	private String STATUS_ABERTO = "aberto";
 	
@@ -64,14 +64,14 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 		
 		LocalTime hora = LocalTime.parse(agendamentoDTO.getHora());
 		
-		new Agendamento();
-		return  Agendamento
-				.builder()
-				.cliente(cliente)
-				.dataAgendamento(agendamentoDTO.getDataAgendamento())
-				.status(agendamentoDTO.getStatus())
-				.hora(hora)
-				.build();
+		Agendamento agendamento = new Agendamento();
+		
+		agendamento.setCliente(cliente);
+		agendamento.setDataAgendamento(agendamentoDTO.getDataAgendamento());
+		agendamento.setStatus(agendamentoDTO.getStatus());
+		
+		agendamento.setHora(hora);
+		
+		return agendamento;
 	}
-
 }
