@@ -1,4 +1,4 @@
-package br.com.salasagendamento.client;
+package br.com.salasagendamento.api.client;
 
 import br.com.salasagendamento.api.ClienteContract;
 
