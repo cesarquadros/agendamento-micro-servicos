@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.salasagendamento.domain.ClienteService;
+import br.com.salasagendamento.integration.repository.ClienteRepository;
 import br.com.salasagendamento.model.document.Cliente;
 import br.com.salasagendamento.model.dto.ClienteDTO;
-import br.com.salasagendamento.repository.ClienteRepository;
-import br.com.salasagendamento.service.ClienteService;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {

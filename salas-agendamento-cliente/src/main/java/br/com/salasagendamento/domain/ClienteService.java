@@ -1,4 +1,4 @@
-package br.com.salasagendamento.service;
+package br.com.salasagendamento.domain;
 
 import java.util.List;
 

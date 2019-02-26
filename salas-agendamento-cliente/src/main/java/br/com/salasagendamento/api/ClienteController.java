@@ -1,4 +1,4 @@
-package br.com.salasagendamento.controller;
+package br.com.salasagendamento.api;
 
 import java.util.List;
 
@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.salasagendamento.api.ClienteContract;
+import br.com.salasagendamento.domain.ClienteService;
 import br.com.salasagendamento.model.Resposta;
 import br.com.salasagendamento.model.document.Cliente;
 import br.com.salasagendamento.model.dto.ClienteDTO;
 import br.com.salasagendamento.model.utils.Validador;
-import br.com.salasagendamento.service.ClienteService;
 import io.swagger.annotations.Api;
 
 @RestController

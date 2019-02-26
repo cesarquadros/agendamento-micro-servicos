@@ -1,4 +1,4 @@
-package br.com.salasagendamento.repository;
+package br.com.salasagendamento.integration.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
