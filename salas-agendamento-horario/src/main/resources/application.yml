@@ -15,10 +15,10 @@ salas-agendamento-horario:
     19:00,
     20:00
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:9091/eureka/
+#eureka:
+ # client:
+  #  serviceUrl:
+   #   defaultZone: http://127.0.0.1:9091/eureka/
     
 server:
   port: 8083
