@@ -1,9 +1,16 @@
-package br.com.salasagendamento.model.dto;
+package br.com.salasagendamento.model.document;
 
 import java.time.LocalDate;
 
-public class ClienteDTO {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
+public class ClienteDocument {
+
+	@Id
+	private String id;
+	//private Autenticacao autenticacao;
 	private String nome;
 	private String sobrenome;
 	private String telFixo;
@@ -12,6 +19,12 @@ public class ClienteDTO {
 	private String email;
 	private String sexo;
 	private LocalDate dataNascimento;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}

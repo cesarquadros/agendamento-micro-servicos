@@ -10,25 +10,25 @@ import com.querydsl.core.annotations.QueryEntity;
 
 @QueryEntity
 @Document
-public class Agendamento {
+public class AgendamentoDocument {
 
 	@Id
 	private String id;
-	private Cliente cliente;
+	private ClienteDocument cliente;
 	private LocalDate dataAgendamento;
 	private String status;
 	private LocalTime hora;
-	private Sala sala;
+	private SalaDocument sala;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Cliente getCliente() {
+	public ClienteDocument getCliente() {
 		return cliente;
 	}
-	public void setCliente(Cliente cliente) {
+	public void setCliente(ClienteDocument cliente) {
 		this.cliente = cliente;
 	}
 	public LocalDate getDataAgendamento() {
@@ -49,10 +49,10 @@ public class Agendamento {
 	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
-	public Sala getSala() {
+	public SalaDocument getSala() {
 		return sala;
 	}
-	public void setSala(Sala sala) {
+	public void setSala(SalaDocument sala) {
 		this.sala = sala;
 	}
 }

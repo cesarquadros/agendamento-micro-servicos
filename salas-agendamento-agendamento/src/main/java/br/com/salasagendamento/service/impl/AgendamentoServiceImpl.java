@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 
 import br.com.salasagendamento.integration.ClienteIntegration;
-import br.com.salasagendamento.model.document.Agendamento;
-import br.com.salasagendamento.model.document.Cliente;
-import br.com.salasagendamento.model.document.QAgendamento;
+import br.com.salasagendamento.model.document.AgendamentoDocument;
+import br.com.salasagendamento.model.document.ClienteDocument;
+import br.com.salasagendamento.model.document.QAgendamentoDocument;
 import br.com.salasagendamento.model.dto.AgendamentoDTO;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.repository.AgendamentoRepository;
@@ -29,42 +29,42 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 	private String STATUS_ABERTO = "aberto";
 	
 	@Override
-	public Agendamento salvar(Agendamento agendamento) {
+	public AgendamentoDocument salvar(AgendamentoDocument agendamento) {
 		return this.agendamentoRepository.save(agendamento);
 	}
 
 	@Override
-	public List<Agendamento> listar() {
+	public List<AgendamentoDocument> listar() {
 		return this.agendamentoRepository.findAll();
 	}
 
 	@Override
-	public List<Agendamento> listarPorFiltro(FiltroDTO filtroDTO) {
+	public List<AgendamentoDocument> listarPorFiltro(FiltroDTO filtroDTO) {
 		
 		BooleanBuilder builder = new BooleanBuilder();
 		
-		builder.and(QAgendamento.agendamento.dataAgendamento.between(filtroDTO.getDataInicial(), filtroDTO.getDataFinal()));
+		builder.and(QAgendamentoDocument.agendamentoDocument.dataAgendamento.between(filtroDTO.getDataInicial(), filtroDTO.getDataFinal()));
 		
-		return (List<Agendamento>) this.agendamentoRepository.findAll(builder);
+		return (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
 	}
 	
 	@Override
-	public List<Agendamento> listarPorDataESala(FiltroDTO filtroDTO) {
+	public List<AgendamentoDocument> listarPorDataESala(FiltroDTO filtroDTO) {
 		
 		BooleanBuilder builder = new BooleanBuilder();
-		builder.and(QAgendamento.agendamento.dataAgendamento.eq(filtroDTO.getDataInicial()));
-		builder.and(QAgendamento.agendamento.sala.id.eq(filtroDTO.getIdSala()));
-		builder.and(QAgendamento.agendamento.status.eq(STATUS_ABERTO));
+		builder.and(QAgendamentoDocument.agendamentoDocument.dataAgendamento.eq(filtroDTO.getDataInicial()));
+		builder.and(QAgendamentoDocument.agendamentoDocument.sala.id.eq(filtroDTO.getIdSala()));
+		builder.and(QAgendamentoDocument.agendamentoDocument.status.eq(STATUS_ABERTO));
 		
-		return (List<Agendamento>) this.agendamentoRepository.findAll(builder);
+		return (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
 	}
 
 	@Override
-	public Agendamento converterDTO(AgendamentoDTO agendamentoDTO, Cliente cliente) {
+	public AgendamentoDocument converterDTO(AgendamentoDTO agendamentoDTO, ClienteDocument cliente) {
 		
 		LocalTime hora = LocalTime.parse(agendamentoDTO.getHora());
 		
-		Agendamento agendamento = new Agendamento();
+		AgendamentoDocument agendamento = new AgendamentoDocument();
 		
 		agendamento.setCliente(cliente);
 		agendamento.setDataAgendamento(agendamentoDTO.getDataAgendamento());

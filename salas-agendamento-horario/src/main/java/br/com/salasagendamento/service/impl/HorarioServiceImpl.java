@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.salasagendamento.integration.AgendamentoIntegration;
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.document.Agendamento;
+import br.com.salasagendamento.model.document.AgendamentoDocument;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.service.HorarioService;
 import br.com.salasagendamento.utils.HorariosProperties;
@@ -40,14 +40,14 @@ public class HorarioServiceImpl implements HorarioService {
 	@Override
 	public List<LocalTime> getHorariosDisponiveis(FiltroDTO filtroDTO) {
 
-		Resposta<List<Agendamento>> agendamentos = this.agendamentoIntegration.listarPorDataESala(
+		Resposta<List<AgendamentoDocument>> agendamentos = this.agendamentoIntegration.listarPorDataESala(
 				filtroDTO.getDataInicial().toString(), filtroDTO.getIdSala(), filtroDTO.getStatus());
 
 		List<LocalTime> horarios = getHorarios();
 		List<LocalTime> horariosDisponiveis = new ArrayList<>();
 
 		horarios.stream().forEach(horario -> {
-			Optional<Agendamento> local = agendamentos.getConteudo()
+			Optional<AgendamentoDocument> local = agendamentos.getConteudo()
 					.stream()
 					.filter(a -> a.getHora().equals(horario))
 					.findAny();

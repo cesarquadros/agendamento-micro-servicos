@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Unidade {
+public class UnidadeDocument {
 
 	private String id;
 	//private Endereco endereco;
 	private String nomeUnidade;
-	private List<Sala> listaSala;
+	private List<SalaDocument> listaSala;
 	public String getId() {
 		return id;
 	}
@@ -23,10 +23,10 @@ public class Unidade {
 	public void setNomeUnidade(String nomeUnidade) {
 		this.nomeUnidade = nomeUnidade;
 	}
-	public List<Sala> getListaSala() {
+	public List<SalaDocument> getListaSala() {
 		return listaSala;
 	}
-	public void setListaSala(List<Sala> listaSala) {
+	public void setListaSala(List<SalaDocument> listaSala) {
 		this.listaSala = listaSala;
 	}
 }

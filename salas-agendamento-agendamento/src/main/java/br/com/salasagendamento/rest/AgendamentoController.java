@@ -1,4 +1,4 @@
-package br.com.salasagendamento.controller;
+package br.com.salasagendamento.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ import br.com.salasagendamento.api.AgendamentoContract;
 import br.com.salasagendamento.integration.ClienteIntegration;
 import br.com.salasagendamento.integration.HorarioIntegration;
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.document.Agendamento;
-import br.com.salasagendamento.model.document.Cliente;
+import br.com.salasagendamento.model.document.AgendamentoDocument;
+import br.com.salasagendamento.model.document.ClienteDocument;
 import br.com.salasagendamento.model.dto.AgendamentoDTO;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.model.messages.Message;
@@ -41,11 +41,11 @@ public class AgendamentoController implements AgendamentoContract {
 	private Message message;
 	
 	@Override
-	public Resposta<Agendamento> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
+	public Resposta<AgendamentoDocument> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
 
 		List<String> errosValidacao = new ArrayList<>();
-		Resposta<Agendamento> resposta = new Resposta<>();
-		Resposta<Cliente> cliente = this.clienteIntegration.findByCpf(agendamentoDTO.getCpfCliente());
+		Resposta<AgendamentoDocument> resposta = new Resposta<>();
+		Resposta<ClienteDocument> cliente = this.clienteIntegration.findByCpf(agendamentoDTO.getCpfCliente());
 
 		if (ObjectUtils.isEmpty(cliente.getConteudo())) {
 			errosValidacao.add(this.message.getMessage(MessageHelper.CLIENTE_INEXISTENTE));
@@ -54,7 +54,7 @@ public class AgendamentoController implements AgendamentoContract {
 			return resposta;
 		}
 		
-		Agendamento agendamento = this.agendamentoService.converterDTO(agendamentoDTO, cliente.getConteudo());
+		AgendamentoDocument agendamento = this.agendamentoService.converterDTO(agendamentoDTO, cliente.getConteudo());
 		
 		agendamento = this.agendamentoService.salvar(agendamento);
 		
@@ -64,10 +64,10 @@ public class AgendamentoController implements AgendamentoContract {
 	}
 
 	@Override
-	public Resposta<List<Agendamento>> listar() {
+	public Resposta<List<AgendamentoDocument>> listar() {
 
-		Resposta<List<Agendamento>> resposta = new Resposta<>();
-		List<Agendamento> agendamentos = this.agendamentoService.listar();
+		Resposta<List<AgendamentoDocument>> resposta = new Resposta<>();
+		List<AgendamentoDocument> agendamentos = this.agendamentoService.listar();
 
 //		this.horarioIntegration.getHorarios();
 
@@ -77,10 +77,10 @@ public class AgendamentoController implements AgendamentoContract {
 	}
 
 	@Override
-	public Resposta<List<Agendamento>> listarPorFiltro(FiltroDTO filtroDTO) {
+	public Resposta<List<AgendamentoDocument>> listarPorFiltro(FiltroDTO filtroDTO) {
 
-		Resposta<List<Agendamento>> resposta = new Resposta<>();
-		List<Agendamento> agendamentos = this.agendamentoService.listarPorFiltro(filtroDTO);
+		Resposta<List<AgendamentoDocument>> resposta = new Resposta<>();
+		List<AgendamentoDocument> agendamentos = this.agendamentoService.listarPorFiltro(filtroDTO);
 
 		resposta.setConteudo(agendamentos);
 
@@ -89,10 +89,10 @@ public class AgendamentoController implements AgendamentoContract {
 	}
 
 	@Override
-	public Resposta<List<Agendamento>> listarPorDataESala(FiltroDTO filtroDTO) {
+	public Resposta<List<AgendamentoDocument>> listarPorDataESala(FiltroDTO filtroDTO) {
 		
-		Resposta<List<Agendamento>> resposta = new Resposta<>();
-		List<Agendamento> agendamentos = this.agendamentoService.listarPorDataESala(filtroDTO);
+		Resposta<List<AgendamentoDocument>> resposta = new Resposta<>();
+		List<AgendamentoDocument> agendamentos = this.agendamentoService.listarPorDataESala(filtroDTO);
 		
 		resposta.setConteudo(agendamentos);
 		

@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.salasagendamento.model.document.Cliente;
+import br.com.salasagendamento.model.document.ClienteDocument;
 import br.com.salasagendamento.model.messages.Message;
 import br.com.salasagendamento.model.messages.MessageHelper;
 
@@ -18,7 +18,7 @@ public class Validador {
 	@Autowired
 	private Message message;
 
-	public List<String> validarCliente(Cliente cliente){
+	public List<String> validarCliente(ClienteDocument cliente){
 		
 		List<String> erros = new ArrayList<String>();
 		
