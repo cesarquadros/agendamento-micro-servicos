@@ -2,8 +2,11 @@ package br.com.salasagendamento.model.dto;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Cliente {
 
+	private String id;
 	private String nome;
 	private String sobrenome;
 	private String telFixo;
@@ -13,6 +16,12 @@ public class Cliente {
 	private String sexo;
 	private LocalDate dataNascimento;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}

@@ -1,4 +1,4 @@
-package br.com.salasagendamento.rest;
+package br.com.salasagendamento.app.rest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,27 +9,27 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.salasagendamento.api.AgendamentoContract;
-import br.com.salasagendamento.integration.ClienteIntegration;
-import br.com.salasagendamento.integration.HorarioIntegration;
+import br.com.salasagendamento.app.port.AgendamentoRestPort;
+import br.com.salasagendamento.domain.service.AgendamentoServiceImpl;
+import br.com.salasagendamento.integration.feign.ClienteIntegration;
+import br.com.salasagendamento.integration.feign.HorarioIntegration;
 import br.com.salasagendamento.model.Resposta;
 import br.com.salasagendamento.model.document.AgendamentoDocument;
 import br.com.salasagendamento.model.document.ClienteDocument;
-import br.com.salasagendamento.model.dto.AgendamentoDTO;
+import br.com.salasagendamento.model.dto.Agendamento;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.model.messages.Message;
 import br.com.salasagendamento.model.messages.MessageHelper;
-import br.com.salasagendamento.service.AgendamentoService;
 import io.swagger.annotations.Api;
 
 @RestController
 @Api(value = "Agendamento", tags = "Agendamento")
-public class AgendamentoController implements AgendamentoContract {
+public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	
-	private Logger log = org.slf4j.LoggerFactory.getLogger(AgendamentoController.class);
+	private Logger log = org.slf4j.LoggerFactory.getLogger(AgendamentoRestAdapter.class);
 
 	@Autowired
-	private AgendamentoService agendamentoService;
+	private AgendamentoServiceImpl agendamentoService;
 
 	@Autowired
 	private ClienteIntegration clienteIntegration;
@@ -41,7 +41,7 @@ public class AgendamentoController implements AgendamentoContract {
 	private Message message;
 	
 	@Override
-	public Resposta<AgendamentoDocument> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
+	public Resposta<AgendamentoDocument> salvar(@RequestBody Agendamento agendamentoDTO) {
 
 		List<String> errosValidacao = new ArrayList<>();
 		Resposta<AgendamentoDocument> resposta = new Resposta<>();

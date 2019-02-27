@@ -1,4 +1,4 @@
-package br.com.salasagendamento.service.impl;
+package br.com.salasagendamento.domain.service;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -8,17 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
 
-import br.com.salasagendamento.integration.ClienteIntegration;
+import br.com.salasagendamento.integration.feign.ClienteIntegration;
 import br.com.salasagendamento.model.document.AgendamentoDocument;
 import br.com.salasagendamento.model.document.ClienteDocument;
 import br.com.salasagendamento.model.document.QAgendamentoDocument;
-import br.com.salasagendamento.model.dto.AgendamentoDTO;
+import br.com.salasagendamento.model.dto.Agendamento;
 import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.repository.AgendamentoRepository;
-import br.com.salasagendamento.service.AgendamentoService;
 
 @Service
-public class AgendamentoServiceImpl implements AgendamentoService{
+public class AgendamentoServiceImpl {
 
 	@Autowired
 	private AgendamentoRepository agendamentoRepository;
@@ -28,17 +27,14 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 	
 	private String STATUS_ABERTO = "aberto";
 	
-	@Override
 	public AgendamentoDocument salvar(AgendamentoDocument agendamento) {
 		return this.agendamentoRepository.save(agendamento);
 	}
 
-	@Override
 	public List<AgendamentoDocument> listar() {
 		return this.agendamentoRepository.findAll();
 	}
 
-	@Override
 	public List<AgendamentoDocument> listarPorFiltro(FiltroDTO filtroDTO) {
 		
 		BooleanBuilder builder = new BooleanBuilder();
@@ -48,7 +44,6 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 		return (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
 	}
 	
-	@Override
 	public List<AgendamentoDocument> listarPorDataESala(FiltroDTO filtroDTO) {
 		
 		BooleanBuilder builder = new BooleanBuilder();
@@ -59,8 +54,7 @@ public class AgendamentoServiceImpl implements AgendamentoService{
 		return (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
 	}
 
-	@Override
-	public AgendamentoDocument converterDTO(AgendamentoDTO agendamentoDTO, ClienteDocument cliente) {
+	public AgendamentoDocument converterDTO(Agendamento agendamentoDTO, ClienteDocument cliente) {
 		
 		LocalTime hora = LocalTime.parse(agendamentoDTO.getHora());
 		

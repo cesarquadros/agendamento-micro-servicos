@@ -1,4 +1,4 @@
-package br.com.salasagendamento.config;
+package br.com.salasagendamento.app.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

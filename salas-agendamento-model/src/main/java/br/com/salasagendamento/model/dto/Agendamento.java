@@ -8,7 +8,7 @@ import com.querydsl.core.annotations.QueryEntity;
 
 @QueryEntity
 @Document
-public class AgendamentoDTO {
+public class Agendamento {
 
 	private String cpfCliente;
 	private LocalDate dataAgendamento;

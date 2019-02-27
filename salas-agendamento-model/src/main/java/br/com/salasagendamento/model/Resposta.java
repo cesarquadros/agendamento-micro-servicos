@@ -6,7 +6,7 @@ public class Resposta<T> {
 
 	private T conteudo;
 	private List<String> mensagens;
-	private Boolean valido;
+	private Boolean valido = true;
 	
 	public T getConteudo() {
 		return conteudo;

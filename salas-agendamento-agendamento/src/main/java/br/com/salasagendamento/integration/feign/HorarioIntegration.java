@@ -1,4 +1,4 @@
-package br.com.salasagendamento.integration;
+package br.com.salasagendamento.integration.feign;
 
 import java.time.LocalTime;
 import java.util.List;

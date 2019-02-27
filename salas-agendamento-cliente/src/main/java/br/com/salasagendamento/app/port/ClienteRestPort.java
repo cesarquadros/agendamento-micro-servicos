@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.document.ClienteDocument;
 import br.com.salasagendamento.model.dto.Cliente;
 
 public interface ClienteRestPort {
 	
 	@PostMapping(value = "${salas-agendamento.request.mapping.salvar}", produces = MediaType.APPLICATION_JSON_VALUE)
-	Resposta<ClienteDocument> salvar(@RequestBody Cliente clienteDTO);
+	Resposta<Cliente> salvar(@RequestBody Cliente clienteDTO);
 	
 	@GetMapping(value = "${salas-agendamento.request.mapping.listarClientes}", produces = MediaType.APPLICATION_JSON_VALUE)
-	Resposta<List<ClienteDocument>> listarClientes();
+	Resposta<List<Cliente>> listarClientes();
 	
 	@GetMapping(value = "${salas-agendamento.request.mapping.findByCpf}")
-	Resposta<ClienteDocument> findByCpf(@PathVariable(value = "cpf") String cpf );
+	Resposta<Cliente> findByCpf(@PathVariable(value = "cpf") String cpf );
 }
