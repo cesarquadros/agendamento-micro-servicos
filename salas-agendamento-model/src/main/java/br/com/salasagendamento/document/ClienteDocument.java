@@ -1,4 +1,4 @@
-package br.com.salasagendamento.model.document;
+package br.com.salasagendamento.document;
 
 import java.time.LocalDate;
 

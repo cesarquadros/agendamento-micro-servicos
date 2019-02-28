@@ -1,4 +1,4 @@
-package br.com.salasagendamento.model.messages;
+package br.com.salasagendamento.messages;
 
 public class MessageHelper {
 

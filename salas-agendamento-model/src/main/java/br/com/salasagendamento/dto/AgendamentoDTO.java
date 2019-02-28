@@ -1,15 +1,9 @@
-package br.com.salasagendamento.model.dto;
+package br.com.salasagendamento.dto;
 
 import java.time.LocalDate;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import com.querydsl.core.annotations.QueryEntity;
-
-@QueryEntity
-@Document
-public class Agendamento {
-
+public class AgendamentoDTO {
+	
 	private String cpfCliente;
 	private LocalDate dataAgendamento;
 	private String status;

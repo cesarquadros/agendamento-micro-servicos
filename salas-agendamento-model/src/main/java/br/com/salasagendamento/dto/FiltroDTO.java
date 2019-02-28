@@ -1,4 +1,4 @@
-package br.com.salasagendamento.model.dto;
+package br.com.salasagendamento.dto;
 
 import java.time.LocalDate;
 
@@ -13,6 +13,7 @@ public class FiltroDTO {
 	private LocalDate  dataFinal;
 	private String idSala;
 	private String status;
+	
 	public LocalDate getDataInicial() {
 		return dataInicial;
 	}

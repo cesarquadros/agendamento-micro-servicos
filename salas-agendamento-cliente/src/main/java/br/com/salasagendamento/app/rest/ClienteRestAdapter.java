@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salasagendamento.app.port.ClienteRestPort;
 import br.com.salasagendamento.domain.service.ClienteService;
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.model.Cliente;
 import io.swagger.annotations.Api;
 
 @RestController

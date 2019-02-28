@@ -1,4 +1,4 @@
-package br.com.salasagendamento.model.utils;
+package br.com.salasagendamento.utils;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
@@ -8,9 +8,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.salasagendamento.model.document.ClienteDocument;
-import br.com.salasagendamento.model.messages.Message;
-import br.com.salasagendamento.model.messages.MessageHelper;
+import br.com.salasagendamento.document.ClienteDocument;
+import br.com.salasagendamento.messages.Message;
+import br.com.salasagendamento.messages.MessageHelper;
 
 @Service
 public class Validador {

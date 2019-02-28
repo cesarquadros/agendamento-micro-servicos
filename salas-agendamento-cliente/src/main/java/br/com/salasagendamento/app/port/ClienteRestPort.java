@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.model.Cliente;
 
 public interface ClienteRestPort {
 	

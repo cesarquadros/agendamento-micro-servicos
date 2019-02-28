@@ -1,4 +1,4 @@
-package br.com.salasagendamento.model.document;
+package br.com.salasagendamento.document;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

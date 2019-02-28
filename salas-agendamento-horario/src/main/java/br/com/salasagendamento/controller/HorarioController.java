@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salasagendamento.api.HorarioContract;
+import br.com.salasagendamento.dto.FiltroDTO;
+import br.com.salasagendamento.messages.Message;
+import br.com.salasagendamento.messages.MessageHelper;
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.dto.FiltroDTO;
-import br.com.salasagendamento.model.messages.Message;
-import br.com.salasagendamento.model.messages.MessageHelper;
 import br.com.salasagendamento.service.HorarioService;
 import io.swagger.annotations.Api;
 

@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 
+import br.com.salasagendamento.document.ClienteDocument;
 import br.com.salasagendamento.domain.port.ClientePersistencePort;
 import br.com.salasagendamento.integration.parse.ClienteDTOParaDocument;
 import br.com.salasagendamento.integration.parse.ClienteDocumentParaDTO;
 import br.com.salasagendamento.integration.repository.ClienteRepository;
-import br.com.salasagendamento.model.document.ClienteDocument;
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.model.Cliente;
 
 @Repository
 public class ClientePersistenceAdapter implements ClientePersistencePort {

@@ -7,8 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.salasagendamento.document.AgendamentoDocument;
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.document.AgendamentoDocument;
 
 @FeignClient(name = "salas-agendamento-agendamento", url = "localhost:8081/")
 public interface AgendamentoIntegration {

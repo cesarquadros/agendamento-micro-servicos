@@ -8,12 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.salasagendamento.app.parse.DTOParaModel;
 import br.com.salasagendamento.app.port.AgendamentoRestPort;
 import br.com.salasagendamento.domain.service.AgendamentoService;
-import br.com.salasagendamento.model.dto.Agendamento;
-import br.com.salasagendamento.model.dto.FiltroDTO;
-import br.com.salasagendamento.model.messages.Message;
-import br.com.salasagendamento.model.messages.MessageHelper;
+import br.com.salasagendamento.dto.AgendamentoDTO;
+import br.com.salasagendamento.dto.FiltroDTO;
+import br.com.salasagendamento.messages.Message;
+import br.com.salasagendamento.messages.MessageHelper;
+import br.com.salasagendamento.model.Agendamento;
 import io.swagger.annotations.Api;
 
 @RestController
@@ -21,16 +23,17 @@ import io.swagger.annotations.Api;
 public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	
 	private Logger log = org.slf4j.LoggerFactory.getLogger(AgendamentoRestAdapter.class);
-
 	@Autowired
 	private AgendamentoService agendamentoService;
-
 	@Autowired
 	private Message message;
+	@Autowired
+	private DTOParaModel dtoParaModel;
 	
 	@Override
-	public ResponseEntity<Agendamento> salvar(@RequestBody Agendamento agendamentoDTO) {
-		Agendamento agendamento = this.agendamentoService.salvar(agendamentoDTO);
+	public ResponseEntity<Agendamento> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
+		Agendamento agendamento = this.dtoParaModel.parse(agendamentoDTO);
+		agendamento = this.agendamentoService.salvar(agendamento);
 		log.info(this.message.getMessage(MessageHelper.AGENDAMENTO_SUCESSO));
 		return ResponseEntity.ok(agendamento);
 	}
@@ -45,12 +48,8 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 
 	@Override
 	public ResponseEntity<List<Agendamento>> listarPorFiltro(FiltroDTO filtroDTO) {
-//
-//		List<AgendamentoDocument> agendamentos = this.agendamentoService.listarPorFiltro(filtroDTO);
-//
-//		resposta.setConteudo(agendamentos);
-
-		return null;
+		List<Agendamento> agendamentos = this.agendamentoService.listarPorFiltro(filtroDTO);
+		return ResponseEntity.ok(agendamentos);
 	}
 
 	@Override

@@ -2,8 +2,8 @@ package br.com.salasagendamento.integration.parse;
 
 import org.springframework.stereotype.Component;
 
-import br.com.salasagendamento.model.document.ClienteDocument;
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.document.ClienteDocument;
+import br.com.salasagendamento.model.Cliente;
 
 @Component
 public class ClienteDTOParaDocument {

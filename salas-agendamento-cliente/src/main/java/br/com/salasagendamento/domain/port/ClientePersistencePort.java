@@ -2,7 +2,7 @@ package br.com.salasagendamento.domain.port;
 
 import java.util.List;
 
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.model.Cliente;
 
 public interface ClientePersistencePort {
 	

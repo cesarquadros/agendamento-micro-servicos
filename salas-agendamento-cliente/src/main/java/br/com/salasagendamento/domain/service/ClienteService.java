@@ -8,7 +8,7 @@ import org.springframework.util.ObjectUtils;
 
 import br.com.salasagendamento.domain.exception.ClienteException;
 import br.com.salasagendamento.integration.persistence.ClientePersistenceAdapter;
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.model.Cliente;
 
 @Service
 public class ClienteService {

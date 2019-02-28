@@ -8,10 +8,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.salasagendamento.document.AgendamentoDocument;
+import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.integration.AgendamentoIntegration;
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.document.AgendamentoDocument;
-import br.com.salasagendamento.model.dto.FiltroDTO;
 import br.com.salasagendamento.service.HorarioService;
 import br.com.salasagendamento.utils.HorariosProperties;
 

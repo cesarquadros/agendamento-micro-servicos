@@ -1,4 +1,4 @@
-package br.com.salasagendamento.model.document;
+package br.com.salasagendamento.document;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.querydsl.core.annotations.QueryEntity;
 
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.model.Cliente;
 
 @QueryEntity
 @Document

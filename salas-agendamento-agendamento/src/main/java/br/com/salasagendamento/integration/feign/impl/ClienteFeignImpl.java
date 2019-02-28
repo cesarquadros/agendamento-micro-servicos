@@ -7,7 +7,7 @@ import org.springframework.util.ObjectUtils;
 
 import br.com.salasagendamento.domain.exception.AgendamentoException;
 import br.com.salasagendamento.integration.feign.ClienteIntegration;
-import br.com.salasagendamento.model.dto.Cliente;
+import br.com.salasagendamento.model.Cliente;
 
 @Component
 public class ClienteFeignImpl {

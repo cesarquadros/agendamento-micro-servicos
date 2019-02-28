@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.model.Resposta;
-import br.com.salasagendamento.model.dto.FiltroDTO;
 
 public interface HorarioContract {
 
