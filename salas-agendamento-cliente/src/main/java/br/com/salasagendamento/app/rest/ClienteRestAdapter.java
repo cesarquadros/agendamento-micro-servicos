@@ -1,9 +1,9 @@
 package br.com.salasagendamento.app.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salasagendamento.app.port.ClienteRestPort;
 import br.com.salasagendamento.domain.service.ClienteService;
-import br.com.salasagendamento.model.Resposta;
 import br.com.salasagendamento.model.dto.Cliente;
 import io.swagger.annotations.Api;
 
@@ -23,30 +22,22 @@ public class ClienteRestAdapter implements ClienteRestPort {
 	@Autowired
 	private ClienteService service;
 
-	public Resposta<Cliente> salvar(@RequestBody Cliente clienteDTO) {
-		Resposta<Cliente> resposta = new Resposta<>();
+	public ResponseEntity<Cliente> salvar(@RequestBody Cliente clienteDTO) {
 		Cliente cliente = this.service.salvar(clienteDTO);
-		resposta.setConteudo(cliente);
-		return resposta;
+		return ResponseEntity.ok(cliente);
 	}
 
-	public Resposta<List<Cliente>> listarClientes() {
-		Resposta<List<Cliente>> resposta = new Resposta<>();
-		resposta.setConteudo(this.service.listarClientes());
-		return resposta;
+	public ResponseEntity<List<Cliente>> listarClientes() {
+		List<Cliente> clientes = this.service.listarClientes();
+		return ResponseEntity.ok(clientes);
 	}
 
-	public Resposta<Cliente> findByCpf(@PathVariable(value = "cpf") String cpf) {
-		Resposta<Cliente> resposta = new Resposta<>();
+	public ResponseEntity<?> findByCpf(@PathVariable(value = "cpf") String cpf) {
 		Cliente cliente = this.service.findByCpf(cpf);
 		
-		if(!ObjectUtils.isEmpty(cliente)) {
-			resposta.setConteudo(cliente);
+		if(ObjectUtils.isEmpty(cliente)) {
+			return ResponseEntity.ok(MENSAGEM_CLIENTE_NAO_ENCONTRADO);
 		}
-		List<String> mensagens = new ArrayList<>();
-		mensagens.add(MENSAGEM_CLIENTE_NAO_ENCONTRADO);
-		resposta.setMensagens(mensagens);
-		
-		return resposta;
+		return ResponseEntity.ok(cliente);
 	}
 }

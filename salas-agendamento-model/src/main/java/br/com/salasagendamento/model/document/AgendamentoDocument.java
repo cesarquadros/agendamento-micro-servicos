@@ -8,13 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.querydsl.core.annotations.QueryEntity;
 
+import br.com.salasagendamento.model.dto.Cliente;
+
 @QueryEntity
 @Document
 public class AgendamentoDocument {
 
 	@Id
 	private String id;
-	private ClienteDocument cliente;
+	private Cliente cliente;
 	private LocalDate dataAgendamento;
 	private String status;
 	private LocalTime hora;
@@ -25,10 +27,10 @@ public class AgendamentoDocument {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public ClienteDocument getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
-	public void setCliente(ClienteDocument cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	public LocalDate getDataAgendamento() {

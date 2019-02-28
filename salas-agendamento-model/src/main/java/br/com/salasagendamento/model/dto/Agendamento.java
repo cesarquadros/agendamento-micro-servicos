@@ -15,6 +15,7 @@ public class Agendamento {
 	private String status;
 	private String hora;
 	private String idSala;
+	
 	public String getCpfCliente() {
 		return cpfCliente;
 	}
