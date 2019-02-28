@@ -9,54 +9,46 @@ import org.springframework.util.ObjectUtils;
 
 import br.com.salasagendamento.document.ClienteDocument;
 import br.com.salasagendamento.domain.port.ClientePersistencePort;
-import br.com.salasagendamento.integration.parse.ClienteDTOParaDocument;
-import br.com.salasagendamento.integration.parse.ClienteDocumentParaDTO;
+import br.com.salasagendamento.integration.parse.DocumentParaModel;
+import br.com.salasagendamento.integration.parse.ModelParaDocument;
 import br.com.salasagendamento.integration.repository.ClienteRepository;
 import br.com.salasagendamento.model.Cliente;
 
 @Repository
 public class ClientePersistenceAdapter implements ClientePersistencePort {
 	
-	private final ClienteRepository repository;
-	private final ClienteDTOParaDocument parseParaDocument;
-	private final ClienteDocumentParaDTO parseParaDTO;
-	
 	@Autowired
-	public ClientePersistenceAdapter(ClienteRepository repository, ClienteDTOParaDocument parseParaDocument, ClienteDocumentParaDTO parseParaDTO) {
-		this.repository = repository;
-		this.parseParaDocument = parseParaDocument;
-		this.parseParaDTO = parseParaDTO;
-	}
-
+	private ClienteRepository repository;
+	@Autowired
+	private ModelParaDocument modelParaDocument;
+	@Autowired
+	private DocumentParaModel documentParaModel;
+	
+	@Override
 	public Cliente salvar(Cliente cliente) {
-		
-		ClienteDocument cli = this.repository.save(this.parseParaDocument.parse(cliente));
-		
-		return this.parseParaDTO.parse(cli);
+		ClienteDocument clienteDocument = this.modelParaDocument.parse(cliente);
+		clienteDocument = this.repository.save(clienteDocument);
+		Cliente clienteSalvo = this.documentParaModel.parse(clienteDocument);
+		return clienteSalvo;
 	}
-
+	@Override
+	public List<Cliente> listarClientes() {
+		List<ClienteDocument> listaClienteDocument = this.repository.findAll();
+		List<Cliente> clientes = new ArrayList<>();
+		listaClienteDocument.forEach(cliente -> clientes.add(this.documentParaModel.parse(cliente)));
+		return clientes;
+	}
+	@Override
+	public Cliente findByCpf(String cpf) {
+		ClienteDocument clienteDoc = this.repository.findByCpf(cpf);
+		if(!ObjectUtils.isEmpty(clienteDoc)) {
+			return this.documentParaModel.parse(clienteDoc);
+		}
+		return null;
+	}
+	@Override
 	public String deletar(String id) {
 		return null;
 	}
 
-	public List<Cliente> listarClientes() {
-		
-		List<ClienteDocument> listaClienteDocument = this.repository.findAll();
-		List<Cliente> clientes = new ArrayList<>();
-		
-		listaClienteDocument.forEach(cliente -> {
-			clientes.add(this.parseParaDTO.parse(cliente));
-		});
-		return clientes;
-	}
-
-	public Cliente findByCpf(String cpf) {
-		
-		ClienteDocument clienteDoc = this.repository.findByCpf(cpf);
-		
-		if(!ObjectUtils.isEmpty(clienteDoc)) {
-			return this.parseParaDTO.parse(clienteDoc);
-		}
-		return null;
-	}
 }

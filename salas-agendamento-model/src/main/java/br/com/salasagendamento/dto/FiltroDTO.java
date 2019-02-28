@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import br.com.salasagendamento.model.Agendamento.Status;
+
 public class FiltroDTO {
 	
 	@DateTimeFormat(iso = ISO.DATE)
@@ -12,7 +14,7 @@ public class FiltroDTO {
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate  dataFinal;
 	private String idSala;
-	private String status;
+	private Status status;
 	
 	public LocalDate getDataInicial() {
 		return dataInicial;
@@ -32,10 +34,10 @@ public class FiltroDTO {
 	public void setIdSala(String idSala) {
 		this.idSala = idSala;
 	}
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	

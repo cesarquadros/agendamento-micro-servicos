@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.querydsl.core.annotations.QueryEntity;
 
+import br.com.salasagendamento.model.Agendamento.Status;
 import br.com.salasagendamento.model.Cliente;
 
 @QueryEntity
@@ -18,7 +19,7 @@ public class AgendamentoDocument {
 	private String id;
 	private Cliente cliente;
 	private LocalDate dataAgendamento;
-	private String status;
+	private Status status;
 	private LocalTime hora;
 	private SalaDocument sala;
 	public String getId() {
@@ -39,10 +40,10 @@ public class AgendamentoDocument {
 	public void setDataAgendamento(LocalDate dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
 	}
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	public LocalTime getHora() {

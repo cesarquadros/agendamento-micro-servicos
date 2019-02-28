@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.salas</groupId>
-	<artifactId>salas-agendamento-agendamento</artifactId>
+	<artifactId>salas-agendamento-agenda</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>salas-agendamento-agendamento</name>
+	<name>salas-agendamento-agenda</name>
 	<description>Serviço de Agendamento de sala</description>
 
 	<parent>

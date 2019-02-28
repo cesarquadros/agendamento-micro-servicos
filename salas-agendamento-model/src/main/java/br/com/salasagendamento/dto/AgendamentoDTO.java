@@ -2,11 +2,13 @@ package br.com.salasagendamento.dto;
 
 import java.time.LocalDate;
 
+import br.com.salasagendamento.model.Agendamento.Status;
+
 public class AgendamentoDTO {
 	
 	private String cpfCliente;
 	private LocalDate dataAgendamento;
-	private String status;
+	private Status status;
 	private String hora;
 	private String idSala;
 	
@@ -22,10 +24,10 @@ public class AgendamentoDTO {
 	public void setDataAgendamento(LocalDate dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
 	}
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	public String getHora() {

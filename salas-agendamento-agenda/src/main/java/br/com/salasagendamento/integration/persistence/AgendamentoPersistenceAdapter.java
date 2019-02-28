@@ -10,6 +10,7 @@ import com.querydsl.core.BooleanBuilder;
 
 import br.com.salasagendamento.document.AgendamentoDocument;
 import br.com.salasagendamento.document.QAgendamentoDocument;
+import br.com.salasagendamento.domain.exception.AgendamentoException;
 import br.com.salasagendamento.domain.port.AgendamentoPersistencePort;
 import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.integration.feign.impl.ClienteFeignImpl;
@@ -34,6 +35,9 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 	@Override
 	public Agendamento salvar(Agendamento agendamento) {
 		Cliente cliente = this.serviceCliente.findClienteByCpf(agendamento.getCliente().getCpf());
+		if(ObjectUtils.isEmpty(cliente)) {
+			throw new AgendamentoException("Nao existe cadastro para esse CPF");
+		}
 		AgendamentoDocument agendamentoDoc = this.dtoParaDoc.parse(agendamento, cliente);
 		this.agendamentoRepository.save(agendamentoDoc);
 		agendamento.setId(agendamentoDoc.getId());
@@ -58,7 +62,7 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 			builder.and(QAgendamentoDocument.agendamentoDocument.sala.id.eq(filtroDTO.getIdSala()));
 		}
 		if(!ObjectUtils.isEmpty(filtroDTO.getStatus())) {
-			builder.and(QAgendamentoDocument.agendamentoDocument.status.eq(filtroDTO.getStatus().toUpperCase()));
+			builder.and(QAgendamentoDocument.agendamentoDocument.status.eq(filtroDTO.getStatus()));
 		}
 		List<AgendamentoDocument> listaAgendamentosDoc = (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
 		List<Agendamento> listaAgendamentos = this.docParaDTO.parseList(listaAgendamentosDoc);

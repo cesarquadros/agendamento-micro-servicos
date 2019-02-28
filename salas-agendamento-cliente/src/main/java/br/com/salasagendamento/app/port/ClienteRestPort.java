@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import br.com.salasagendamento.dto.ClienteDTO;
 import br.com.salasagendamento.model.Cliente;
 
 public interface ClienteRestPort {
 	
 	@PostMapping(value = "${salas-agendamento.request.mapping.salvar}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<Cliente> salvar(@RequestBody Cliente clienteDTO);
+	ResponseEntity<Cliente> salvar(@RequestBody ClienteDTO clienteDTO);
 	
 	@GetMapping(value = "${salas-agendamento.request.mapping.listarClientes}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<Cliente>> listarClientes();

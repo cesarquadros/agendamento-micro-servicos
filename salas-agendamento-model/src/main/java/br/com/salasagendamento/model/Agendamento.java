@@ -3,11 +3,13 @@ package br.com.salasagendamento.model;
 import java.time.LocalDate;
 
 public class Agendamento {
+	
+	public enum Status {ABERTO,FECHADO,CANCELADO}
 
 	private String id;
 	private Cliente cliente;
 	private LocalDate dataAgendamento;
-	private String status;
+	private Status status;
 	private String hora;
 	private String idSala;
 	
@@ -29,10 +31,10 @@ public class Agendamento {
 	public void setDataAgendamento(LocalDate dataAgendamento) {
 		this.dataAgendamento = dataAgendamento;
 	}
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	public String getHora() {

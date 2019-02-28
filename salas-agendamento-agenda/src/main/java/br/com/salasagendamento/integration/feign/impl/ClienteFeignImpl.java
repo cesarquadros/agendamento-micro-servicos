@@ -19,11 +19,11 @@ public class ClienteFeignImpl {
 	
 	public Cliente findClienteByCpf(String cpf) {
 		try {
-			ResponseEntity<Cliente> respostaCliente = this.clienteIntegration.findByCpf(cpf);
+			ResponseEntity<?> respostaCliente = this.clienteIntegration.findByCpf(cpf);
 			if(ObjectUtils.isEmpty(respostaCliente.getBody())) {
 				return null;
 			}
-			return respostaCliente.getBody();
+			return (Cliente) respostaCliente.getBody();
 		} catch (Exception e ) {
 			throw new AgendamentoException(ERRO_COMUNICACAO_SERVICO_CLIENTE + e);
 		}

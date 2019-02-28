@@ -13,6 +13,7 @@ public class DocumentParaModel {
 	public Agendamento parse(AgendamentoDocument agendamentoDoc) {
 		Agendamento agendamento = new Agendamento();
 		String hora = agendamentoDoc.getHora().toString();
+		agendamento.setId(agendamentoDoc.getId());
 		agendamento.setCliente(agendamentoDoc.getCliente());
 		agendamento.setDataAgendamento(agendamentoDoc.getDataAgendamento());
 		agendamento.setStatus(agendamentoDoc.getStatus());
