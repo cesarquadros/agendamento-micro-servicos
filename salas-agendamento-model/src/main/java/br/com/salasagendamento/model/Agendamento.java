@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Agendamento {
 	
-	public enum Status {ABERTO,FECHADO,CANCELADO}
+	public enum Status {ABERTO,FINALIZADO,CANCELADO}
 
 	private String id;
 	private Cliente cliente;
