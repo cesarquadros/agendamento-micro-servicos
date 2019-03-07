@@ -2,3 +2,5 @@
 \.DS_Store
 
 salas-agendamento-agenda/logs/
+
+salas-agendamento-cliente/\.mvn/wrapper/
