@@ -1,0 +1,25 @@
+version: '3'
+services:
+  servico-agenda:
+    build: 
+      dockerfile: ./docker-agenda.dockerfile
+      context: .
+    image: image-agenda
+    container_name: servico-agenda
+    ports: 
+      - 8081:8081
+    networks: 
+      - agendamento-network
+    depends_on: 
+      - mongo-agenda
+  mongo-agenda:
+    image: mongo
+    container_name: mongo-agenda
+    ports: 
+      - 27017:27017
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    networks: 
+      - agendamento-network
+networks: 
+  agendamento-network:
+    driver: bridge

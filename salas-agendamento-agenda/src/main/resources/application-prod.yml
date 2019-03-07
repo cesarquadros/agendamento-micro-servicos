@@ -5,6 +5,9 @@ salas-agendamento-agendamento:
       listar: /agendamento
       listarFiltro: /agendamento/filtro
       listarFiltroDataESala: agendamento/filtro-data-sala
+      cliente-integration:
+        url: cliente-integration:8082/
+        get-cliente: cliente/{cpf}
   horarios:
     08:00,
     09:00,
@@ -28,10 +31,13 @@ salas-agendamento-agendamento:
     
 spring:
   data.mongodb:
-    uri: mongodb://localhost:27017/sala-agendamento-agenda
+    uri: mongodb://mongo-agenda:27017/sala-agendamento-agenda
 #    host: localhost
  #   port: 27017
   #  database: sala-agendamento-agendamentos
 
 server:
   port: 8081
+
+logging:
+  file: logs/agendamento-log

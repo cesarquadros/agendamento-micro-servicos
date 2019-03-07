@@ -1,0 +1,24 @@
+salas-agendamento:
+  request:
+    mapping:
+      salvar: /cliente
+      listarClientes: /cliente
+      findByCpf: /cliente/{cpf}
+      
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:9091/eureka/
+    
+spring:
+  data.mongodb:
+     uri: mongodb://mongo-cliente:27017/sala-agendamento-clientes
+#    host: localhost
+#    port: 27017
+#    database: sala-agendamento-clientes
+    
+server:
+  port: 8082    
+
+logging:
+  file: logs/agendamento-log

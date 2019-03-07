@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.salasagendamento.model.Cliente;
 
-@FeignClient(name = "salas-agendamento-cliente", url = "localhost:8082/")
+@FeignClient(name = "salas-agendamento-cliente", url = "${salas-agendamento-agendamento.request.mapping.cliente-integration.url}")
 public interface ClienteIntegration {
 
-	@GetMapping(value = "cliente/{cpf}")
+	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.cliente-integration.get-cliente}")
 	ResponseEntity<Cliente> findByCpf(@PathVariable(value = "cpf") String cpf );
 }
