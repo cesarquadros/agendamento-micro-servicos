@@ -19,6 +19,6 @@ public class DTOParaModel {
 		cliente.setTelCelular(dto.getTelCelular());
 		cliente.setTelFixo(dto.getTelFixo());
 		
-		return null;
+		return cliente;
  	}
 }

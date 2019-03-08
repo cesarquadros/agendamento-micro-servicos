@@ -1,10 +1,11 @@
 version: '3'
 services:
+  #------------------------------------------ Servicos Agendamento
   servico-agenda:
     build: 
       dockerfile: ./docker-agenda.dockerfile
       context: .
-    image: image-agenda
+    image: imagem-agenda
     container_name: servico-agenda
     ports: 
       - 8081:8081
@@ -12,6 +13,22 @@ services:
       - agendamento-network
     depends_on: 
       - mongo-agenda
+  #-------------------------------------------------------------
+  #--------------------------------------------- Servico Cliente
+  servico-cliente:
+    build: 
+      dockerfile: ./docker-cliente.dockerfile
+      context: .
+    image: imagem-cliente
+    container_name: servico-cliente
+    ports: 
+      - 8082:8082
+    networks: 
+      - agendamento-network
+    depends_on: 
+      - mongo-agenda
+  #-------------------------------------------------------------  
+  #--------------------------------------- Container Mongo Agenda
   mongo-agenda:
     image: mongo
     container_name: mongo-agenda
@@ -20,6 +37,17 @@ services:
     command: mongod --smallfiles --logpath=/dev/null # --quiet
     networks: 
       - agendamento-network
+  #-------------------------------------------------------------  
+  #--------------------------------------- Container Mongo Cliente
+  #mongo-cliente:
+ #   image: mongo
+ #   container_name: mongo-cliente
+ #   ports: 
+ #     - 27018:27018
+ #   command: mongod --smallfiles --logpath=/dev/null # --quiet
+ #   networks: 
+  #    - agendamento-network  
+  #-------------------------------------------------------------
 networks: 
   agendamento-network:
     driver: bridge

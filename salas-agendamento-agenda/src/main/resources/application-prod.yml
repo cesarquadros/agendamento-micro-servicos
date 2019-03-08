@@ -6,7 +6,7 @@ salas-agendamento-agendamento:
       listarFiltro: /agendamento/filtro
       listarFiltroDataESala: agendamento/filtro-data-sala
       cliente-integration:
-        url: cliente-integration:8082/
+        url: servico-cliente:8082/
         get-cliente: cliente/{cpf}
   horarios:
     08:00,
