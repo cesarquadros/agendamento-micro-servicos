@@ -32,21 +32,17 @@ services:
   mongo-agenda:
     image: mongo
     container_name: mongo-agenda
-    ports: 
-      - 27017:27017
     command: mongod --smallfiles --logpath=/dev/null # --quiet
     networks: 
       - agendamento-network
   #-------------------------------------------------------------  
   #--------------------------------------- Container Mongo Cliente
-  #mongo-cliente:
- #   image: mongo
- #   container_name: mongo-cliente
- #   ports: 
- #     - 27018:27018
- #   command: mongod --smallfiles --logpath=/dev/null # --quiet
- #   networks: 
-  #    - agendamento-network  
+  mongo-cliente:
+    image: mongo
+    container_name: mongo-cliente
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    networks: 
+     - agendamento-network  
   #-------------------------------------------------------------
 networks: 
   agendamento-network:

@@ -12,7 +12,7 @@ salas-agendamento:
     
 spring:
   data.mongodb:
-     uri: mongodb://mongo-agenda:27017/sala-agendamento-clientes
+     uri: mongodb://mongo-cliente:27017/sala-agendamento-clientes
 #    host: localhost
 #    port: 27017
 #    database: sala-agendamento-clientes
