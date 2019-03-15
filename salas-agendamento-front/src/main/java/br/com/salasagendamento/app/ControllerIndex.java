@@ -12,4 +12,10 @@ public class ControllerIndex {
 		
 		return "login";
 	}
+	
+	@RequestMapping("/agenda")
+	public String redirectAgendamento() {
+		
+		return "agendamento";
+	}
 }

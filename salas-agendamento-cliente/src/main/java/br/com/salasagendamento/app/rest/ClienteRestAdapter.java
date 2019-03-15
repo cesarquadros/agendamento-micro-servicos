@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import br.com.salasagendamento.dto.ClienteDTO;
 import br.com.salasagendamento.model.Cliente;
 import io.swagger.annotations.Api;
 
+@CrossOrigin(origins = "*")
 @RestController
 @Api(value = "Cliente", tags = "Cliente")
 public class ClienteRestAdapter implements ClienteRestPort {
