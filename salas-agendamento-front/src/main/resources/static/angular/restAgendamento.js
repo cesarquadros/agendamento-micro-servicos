@@ -6,12 +6,12 @@ angular.module('demo', [])
 //        });
 	$http({
 		method : 'GET',
-		url : 'http://127.0.0.1:8082/cliente',
+		url : 'http://192.168.0.10:8081/agendamento',
 		 headers: {
 			   'Content-Type': undefined
 			 },
 	}).success(function(retorno) {
-		$scope.cliente = retorno[0];
+		$scope.agendamento = retorno[0];
 	}).
 	error(function(status) {
 		alert("Ops! Ocorreu um erro, atualize a pagina");

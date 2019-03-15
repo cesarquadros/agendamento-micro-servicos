@@ -10,7 +10,8 @@ services:
     ports: 
       - 8081:8081
     networks: 
-      - agendamento-network
+      agendamento-network:
+        ipv4_address: 192.168.0.10
     depends_on: 
       - mongo-agenda
   #-------------------------------------------------------------
@@ -24,17 +25,35 @@ services:
     ports: 
       - 8082:8082
     networks: 
-      - agendamento-network
+      agendamento-network:
+        ipv4_address: 192.168.0.20
     depends_on: 
       - mongo-agenda
   #-------------------------------------------------------------  
+  #--------------------------------------------- Servico Front
+  servico-front:
+    build: 
+      dockerfile: ./docker-front.dockerfile
+      context: .
+    image: imagem-front
+    container_name: servico-front
+    ports: 
+      - 8080:8080
+    networks: 
+      agendamento-network:
+        ipv4_address: 192.168.0.30
+    depends_on: 
+      - servico-cliente
+      - servico-agenda
+  #------------------------------------------------------------- 
   #--------------------------------------- Container Mongo Agenda
   mongo-agenda:
     image: mongo
     container_name: mongo-agenda
     command: mongod --smallfiles --logpath=/dev/null # --quiet
     networks: 
-      - agendamento-network
+      agendamento-network:
+        ipv4_address: 192.168.0.40
   #-------------------------------------------------------------  
   #--------------------------------------- Container Mongo Cliente
   mongo-cliente:
@@ -42,8 +61,12 @@ services:
     container_name: mongo-cliente
     command: mongod --smallfiles --logpath=/dev/null # --quiet
     networks: 
-     - agendamento-network  
+      agendamento-network:
+        ipv4_address: 192.168.0.50
   #-------------------------------------------------------------
 networks: 
   agendamento-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/16

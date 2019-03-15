@@ -4,18 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/agendamento")
-public class ControllerIndex {
+@RequestMapping("/")
+public class ControllerCliente {
 
-	@RequestMapping("/login")
-	public String redirectLogin() {
-		
-		return "login";
-	}
-	
-	@RequestMapping("/agenda")
+	@RequestMapping("cliente")
 	public String redirectAgendamento() {
 		
-		return "agendamento";
+		return "cliente";
 	}
 }
