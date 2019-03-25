@@ -6,14 +6,13 @@ angular.module('demo', [])
 //        });
 	$http({
 		method : 'GET',
-		url : 'http://192.168.0.10:8081/agendamento',
+		url : 'http://34.73.225.130:8081/agendamento',
 		 headers: {
 			   'Content-Type': undefined
 			 },
-	}).success(function(retorno) {
-		$scope.agendamento = retorno[0];
-	}).
-	error(function(status) {
-		alert("Ops! Ocorreu um erro, atualize a pagina");
+	}).then(function(retorno) {
+		$scope.agendamento = retorno.data[0];
+	}, function(erro) {
+		alert("Ops! Ocorreu um erro, atualize a pagina " + erro);
 	});
 });

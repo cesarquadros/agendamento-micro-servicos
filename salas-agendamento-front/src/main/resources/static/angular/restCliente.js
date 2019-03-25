@@ -6,14 +6,13 @@ angular.module('demo', [])
 //        });
 	$http({
 		method : 'GET',
-		url : 'http://192.168.0.11:8082/cliente',
+		url : 'http://34.73.225.130:8082/cliente',
 		 headers: {
 			   'Content-Type': undefined
 			 },
-	}).success(function(retorno) {
-		$scope.cliente = retorno[0];
-	}).
-	error(function(status) {
-		alert("Ops! Ocorreu um erro, atualize a pagina");
+	}).then(function(retorno) {
+		$scope.cliente = retorno.data[0];
+	}, function(erro) {
+		alert("Ops! Ocorreu um erro, atualize a pagina " + erro);
 	});
 });
