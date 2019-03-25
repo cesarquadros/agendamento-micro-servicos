@@ -6,7 +6,7 @@ angular.module('demo', [])
 //        });
 	$http({
 		method : 'GET',
-		url : 'http://34.73.225.130:8081/agendamento',
+		url : 'http://34.73.225.130:8081/agenda',
 		 headers: {
 			   'Content-Type': undefined
 			 },
