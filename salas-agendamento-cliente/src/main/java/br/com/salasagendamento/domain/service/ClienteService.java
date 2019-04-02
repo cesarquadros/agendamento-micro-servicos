@@ -14,6 +14,7 @@ import br.com.salasagendamento.model.Cliente;
 public class ClienteService {
 	
 	private static final String CLIENTE_JA_CADASTRADO = "Cliente ja cadastrado";
+	
 	@Autowired
 	private ClientePersistenceAdapter adapter;
 

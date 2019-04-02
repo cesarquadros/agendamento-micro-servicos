@@ -64,6 +64,10 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 		if(!ObjectUtils.isEmpty(filtroDTO.getStatus())) {
 			builder.and(QAgendamentoDocument.agendamentoDocument.status.eq(filtroDTO.getStatus()));
 		}
+		if(!ObjectUtils.isEmpty(filtroDTO.getCpfCliente())) {
+			builder.and(QAgendamentoDocument.agendamentoDocument.cliente.cpf.eq(filtroDTO.getCpfCliente()));
+		}
+		
 		List<AgendamentoDocument> listaAgendamentosDoc = (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
 		List<Agendamento> listaAgendamentos = this.docParaDTO.parseList(listaAgendamentosDoc);
 		return listaAgendamentos;

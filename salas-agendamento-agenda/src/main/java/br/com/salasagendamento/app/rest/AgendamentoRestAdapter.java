@@ -53,14 +53,4 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 		List<Agendamento> agendamentos = this.agendamentoService.listarPorFiltro(filtroDTO);
 		return ResponseEntity.ok(agendamentos);
 	}
-
-	@Override
-	public ResponseEntity<List<Agendamento>> listarPorDataESala(FiltroDTO filtroDTO) {
-//		List<AgendamentoDocument> agendamentos = this.agendamentoService.listarPorDataESala(filtroDTO);
-//		
-//		resposta.setConteudo(agendamentos);
-		
-		return null;
-	}
-
 }

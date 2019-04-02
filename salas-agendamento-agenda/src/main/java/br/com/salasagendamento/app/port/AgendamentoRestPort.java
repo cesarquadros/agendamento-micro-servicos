@@ -22,7 +22,4 @@ public interface AgendamentoRestPort {
 	
 	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.listarFiltro}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<Agendamento>> listarPorFiltro(FiltroDTO filtroDTO);
-	
-	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.listarFiltroDataESala}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<List<Agendamento>> listarPorDataESala(FiltroDTO filtroDTO);
 }

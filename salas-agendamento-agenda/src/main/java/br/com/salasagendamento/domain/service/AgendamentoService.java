@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.salasagendamento.document.AgendamentoDocument;
 import br.com.salasagendamento.domain.port.AgendamentoPersistencePort;
 import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.model.Agendamento;
@@ -21,15 +20,10 @@ public class AgendamentoService {
 	}
 
 	public List<Agendamento> listar() {
-		List<Agendamento> listar = this.agendamentoAdapter.listar();
-		return listar;
+		return this.agendamentoAdapter.listar();
 	}
 
 	public List<Agendamento> listarPorFiltro(FiltroDTO filtroDTO) {
 		return this.agendamentoAdapter.listarPorFiltro(filtroDTO);
-	}
-	
-	public List<AgendamentoDocument> listarPorDataESala(FiltroDTO filtroDTO) {
-		return null;
 	}
 }
