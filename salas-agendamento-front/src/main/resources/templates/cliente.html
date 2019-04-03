@@ -7,8 +7,18 @@
 	</head>
 
 	<body>
-		<div ng-controller="Hello">
-			<p>{{cliente.nome}} {{cliente.sobrenome}}</p>
-		</div>
+		<div class="container">
+	        <div class="jumbotron" align="center" style="margin-top: 50px;">
+	            <h1>Seja bem-vindo ao Salas de Agendamentos - INDEX</h1>
+	            <div align="center">
+	                <a href="agendamento/login" class="btn btn-lg btn-primary">Login</a>
+	                <a href="agendamento/agenda" class="btn btn-lg btn-primary">Agendamentos</a>
+	                <a href="agendamento/cliente" class="btn btn-lg btn-primary">Clientes</a>
+	            </div>
+	        </div>
+			<div ng-controller="Hello">
+				<p>{{cliente.nome}} {{cliente.sobrenome}}</p>
+			</div>	        
+   		</div>
 	</body>
 </html>

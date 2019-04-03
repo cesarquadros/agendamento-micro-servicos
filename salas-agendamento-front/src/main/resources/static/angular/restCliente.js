@@ -6,7 +6,8 @@ angular.module('demo', [])
 //        });
 	$http({
 		method : 'GET',
-		url : 'http://34.73.225.130:8082/cliente',
+		//url : 'http://34.73.225.130:8082/cliente',
+		 url : 'http://localhost:8082/cliente',
 		 headers: {
 			   'Content-Type': undefined
 			 },
