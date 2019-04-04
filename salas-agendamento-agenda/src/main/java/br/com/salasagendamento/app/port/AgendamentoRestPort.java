@@ -1,5 +1,6 @@
 package br.com.salasagendamento.app.port;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -25,5 +26,5 @@ public interface AgendamentoRestPort {
 	ResponseEntity<List<Agendamento>> listarPorFiltro(FiltroDTO filtroDTO);
 	
 	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.horariosDisponiveisPorData}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(FiltroDTO filtroDTO);
+	ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(LocalDate dataInicial);
 }

@@ -1,12 +1,16 @@
 package br.com.salasagendamento.app.rest;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,8 +62,12 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 		return ResponseEntity.ok(agendamentos);
 	}
 
+	@ModelAttribute
+	LocalDate initLocalDate() {
+	    return LocalDate.now();
+	}
 	@Override
-	public ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(FiltroDTO filtroDTO) {
-		return ResponseEntity.ok(horarioService.getHorarios());
+	public ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(@DateTimeFormat(iso = ISO.DATE) @ModelAttribute LocalDate data) {
+		return ResponseEntity.ok(horarioService.getHorariosLivresDia(data));
 	}
 }
