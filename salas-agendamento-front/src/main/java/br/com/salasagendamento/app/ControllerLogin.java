@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/")
-public class ControllerCliente {
+public class ControllerLogin {
 
-	@RequestMapping("cliente")
-	public String redirectCliente() {
-		return "cliente";
+	@RequestMapping("login")
+	public String redirectLogin() {
+		
+		return "login";
 	}
 }

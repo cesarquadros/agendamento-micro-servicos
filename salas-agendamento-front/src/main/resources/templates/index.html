@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Agendamentos</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     </head>
     <body>
+    <div ng-include src="'componentes/navbar.html'"></div>
     <div class="container">
         <div class="jumbotron" align="center" style="margin-top: 50px;">
             <h1>Seja bem-vindo ao Salas de Agendamentos - INDEX</h1>
             <div align="center">
-                <a href="/login" class="btn btn-lg btn-primary">Login</a><br>
-                <a href="/agenda" class="btn btn-lg btn-primary">Agendamentos</a><br>
-                <a href="/cliente" class="btn btn-lg btn-primary">Clientes</a>
             </div>
         </div>
     </div>
