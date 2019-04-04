@@ -1,5 +1,6 @@
 package br.com.salasagendamento.app.rest;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.salasagendamento.app.parse.DTOParaModel;
 import br.com.salasagendamento.app.port.AgendamentoRestPort;
 import br.com.salasagendamento.domain.service.AgendamentoService;
+import br.com.salasagendamento.domain.service.HorarioService;
 import br.com.salasagendamento.dto.AgendamentoDTO;
 import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.messages.Message;
@@ -31,6 +33,8 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	private Message message;
 	@Autowired
 	private DTOParaModel dtoParaModel;
+	@Autowired
+	private HorarioService horarioService;
 	
 	@Override
 	public ResponseEntity<Agendamento> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
@@ -52,5 +56,10 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	public ResponseEntity<List<Agendamento>> listarPorFiltro(FiltroDTO filtroDTO) {
 		List<Agendamento> agendamentos = this.agendamentoService.listarPorFiltro(filtroDTO);
 		return ResponseEntity.ok(agendamentos);
+	}
+
+	@Override
+	public ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(FiltroDTO filtroDTO) {
+		return ResponseEntity.ok(horarioService.getHorarios());
 	}
 }
