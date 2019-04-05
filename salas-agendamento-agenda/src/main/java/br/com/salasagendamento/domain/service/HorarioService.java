@@ -14,6 +14,7 @@ import br.com.salasagendamento.domain.port.AgendamentoPersistencePort;
 import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.integration.persistence.HorarioPersistenceAdapter;
 import br.com.salasagendamento.model.Agendamento;
+import br.com.salasagendamento.model.Agendamento.Status;
 
 @Service
 public class HorarioService {
@@ -49,7 +50,7 @@ public class HorarioService {
 					.filter(a -> a.getHora().equals(horario.toString()))
 					.findAny();
 			
-			if(ObjectUtils.isEmpty(find)) {
+			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {
 				horariosLivres.add(horario);
 			}
 		});

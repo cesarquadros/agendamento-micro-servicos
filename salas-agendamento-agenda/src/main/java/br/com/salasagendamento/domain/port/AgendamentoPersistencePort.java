@@ -9,5 +9,7 @@ public interface AgendamentoPersistencePort {
 
 	Agendamento salvar(Agendamento agendamento);
 	List<Agendamento> listar();
-	List<Agendamento> listarPorFiltro(FiltroDTO filtroDTO);	
+	List<Agendamento> listarPorFiltro(FiltroDTO filtroDTO);
+	Agendamento finalizar(String id);
+	Agendamento cancelar(String id);
 }

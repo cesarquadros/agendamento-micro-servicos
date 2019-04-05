@@ -26,4 +26,12 @@ public class AgendamentoService {
 	public List<Agendamento> listarPorFiltro(FiltroDTO filtroDTO) {
 		return this.agendamentoAdapter.listarPorFiltro(filtroDTO);
 	}
+	
+	public Agendamento finalizar(String id) {
+		return this.agendamentoAdapter.finalizar(id);
+	}
+	
+	public Agendamento cancelar(String id) {
+		return this.agendamentoAdapter.cancelar(id);
+	}
 }
