@@ -11,7 +11,7 @@ public class Agendamento {
 	private LocalDate dataAgendamento;
 	private Status status;
 	private String hora;
-	private String idSala;
+	private Sala sala;
 	
 	public String getId() {
 		return id;
@@ -43,10 +43,15 @@ public class Agendamento {
 	public void setHora(String hora) {
 		this.hora = hora;
 	}
-	public String getIdSala() {
-		return idSala;
+	public Sala getSala() {
+		return sala;
 	}
-	public void setIdSala(String idSala) {
-		this.idSala = idSala;
+	public void setSala(Sala sala) {
+		this.sala = sala;
+	}
+	@Override
+	public String toString() {
+		return "Agendamento [id=" + id + ", cliente=" + cliente + ", dataAgendamento=" + dataAgendamento + ", status="
+				+ status + ", hora=" + hora + ", sala=" + sala + "]";
 	}
 }

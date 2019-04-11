@@ -10,6 +10,7 @@ import com.querydsl.core.annotations.QueryEntity;
 
 import br.com.salasagendamento.model.Agendamento.Status;
 import br.com.salasagendamento.model.Cliente;
+import br.com.salasagendamento.model.Sala;
 
 @QueryEntity
 @Document
@@ -21,7 +22,8 @@ public class AgendamentoDocument {
 	private LocalDate dataAgendamento;
 	private Status status;
 	private LocalTime hora;
-	private SalaDocument sala;
+	private Sala sala;
+	
 	public String getId() {
 		return id;
 	}
@@ -52,10 +54,10 @@ public class AgendamentoDocument {
 	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
-	public SalaDocument getSala() {
+	public Sala getSala() {
 		return sala;
 	}
-	public void setSala(SalaDocument sala) {
+	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
 }

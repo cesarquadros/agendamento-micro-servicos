@@ -4,13 +4,16 @@ import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import br.com.salasagendamento.model.Sala;
+
 @Document
 public class UnidadeDocument {
 
 	private String id;
-	//private Endereco endereco;
 	private String nomeUnidade;
-	private List<SalaDocument> listaSala;
+	private String endereco;
+	private List<Sala> listaSala;
+	
 	public String getId() {
 		return id;
 	}
@@ -23,10 +26,16 @@ public class UnidadeDocument {
 	public void setNomeUnidade(String nomeUnidade) {
 		this.nomeUnidade = nomeUnidade;
 	}
-	public List<SalaDocument> getListaSala() {
+	public List<Sala> getListaSala() {
 		return listaSala;
 	}
-	public void setListaSala(List<SalaDocument> listaSala) {
+	public void setListaSala(List<Sala> listaSala) {
 		this.listaSala = listaSala;
+	}
+	public String getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 }

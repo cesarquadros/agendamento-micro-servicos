@@ -1,0 +1,16 @@
+salas-agendamento:
+  request:
+    mapping:
+      salas:
+        findById: sala/{id}
+        listaSalasUnidade: sala-unidades/{idUnidade}
+        
+spring:
+  data.mongodb:
+     uri: mongodb://localhost:27017/sala-agendamento-sala
+#    host: localhost
+#    port: 27017
+#    database: sala-agendamento-clientes
+    
+server:
+  port: 8083

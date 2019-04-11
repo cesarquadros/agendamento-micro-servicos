@@ -15,7 +15,7 @@ public class DTOParaModel {
 		agendamento.setCliente(cliente);
 		agendamento.setDataAgendamento(dto.getDataAgendamento());
 		agendamento.setHora(dto.getHora());
-		agendamento.setIdSala(dto.getIdSala());
+		//agendamento.setIdSala(dto.getIdSala());
 		agendamento.setStatus(dto.getStatus());
 		return agendamento;
 	}
