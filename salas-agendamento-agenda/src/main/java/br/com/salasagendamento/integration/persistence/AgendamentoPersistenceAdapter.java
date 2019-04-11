@@ -1,6 +1,7 @@
 package br.com.salasagendamento.integration.persistence;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,7 @@ import br.com.salasagendamento.integration.parse.DocumentParaModel;
 import br.com.salasagendamento.integration.parse.ModelParaDocument;
 import br.com.salasagendamento.integration.repository.AgendamentoRepository;
 import br.com.salasagendamento.model.Agendamento;
+import br.com.salasagendamento.model.Agendamento.Status;
 import br.com.salasagendamento.model.Cliente;
 
 @Repository
@@ -71,5 +73,31 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 		List<AgendamentoDocument> listaAgendamentosDoc = (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
 		List<Agendamento> listaAgendamentos = this.docParaDTO.parseList(listaAgendamentosDoc);
 		return listaAgendamentos;
+	}
+
+	@Override
+	public Agendamento finalizar(String id) {
+		Optional<AgendamentoDocument> optional = this.agendamentoRepository.findById(id);
+		if(optional.isPresent()) {
+			AgendamentoDocument agendamentoDoc = optional.get();
+			agendamentoDoc.setStatus(Status.FINALIZADO);
+			agendamentoDoc = this.agendamentoRepository.save(agendamentoDoc);
+			Agendamento agendamentoDto = this.docParaDTO.parse(agendamentoDoc);
+			return agendamentoDto;
+		}
+		return null;
+	}
+	
+	@Override
+	public Agendamento cancelar(String id) {
+		Optional<AgendamentoDocument> optional = this.agendamentoRepository.findById(id);
+		if(optional.isPresent()) {
+			AgendamentoDocument agendamentoDoc = optional.get();
+			agendamentoDoc.setStatus(Status.CANCELADO);
+			agendamentoDoc = this.agendamentoRepository.save(agendamentoDoc);
+			Agendamento agendamentoDto = this.docParaDTO.parse(agendamentoDoc);
+			return agendamentoDto;
+		}
+		return null;
 	}
 }

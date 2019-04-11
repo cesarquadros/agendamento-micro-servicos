@@ -6,6 +6,8 @@ salas-agendamento-agendamento:
       listarFiltro: /agendamento/filtro
       listarFiltroDataESala: agendamento/filtro-data-sala
       horariosDisponiveisPorData: agendamento/horarios-disponiveis
+      finalizarAgendamento: agendamento/finalizar/{id}
+      cancelarAgendamento: agendamento/cancelar/{id}      
       cliente-integration:
         url: servico-cliente:8082/
         get-cliente: cliente/{cpf}
