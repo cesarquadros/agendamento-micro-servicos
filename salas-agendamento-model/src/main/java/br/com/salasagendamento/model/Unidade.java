@@ -35,6 +35,6 @@ public class Unidade {
 	}
 	@Override
 	public String toString() {
-		return "Unidade [id=" + id + ", nome=" + nome + ", endereco=" + endereco + "]";
+		return "Unidade [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", listaSalas=" + listaSalas + "]";
 	}
 }

@@ -11,5 +11,5 @@ import br.com.salasagendamento.model.Cliente;
 public interface ClienteIntegration {
 
 	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.cliente-integration.get-cliente}")
-	ResponseEntity<Cliente> findByCpf(@PathVariable(value = "cpf") String cpf );
+	ResponseEntity<Cliente> findByCpf(@PathVariable(value = "cpf") String cpf);
 }

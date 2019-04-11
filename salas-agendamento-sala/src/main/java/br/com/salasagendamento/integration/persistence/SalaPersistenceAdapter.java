@@ -18,14 +18,15 @@ public class SalaPersistenceAdapter implements SalaPersistencePort{
 	
 	@Override
 	public Sala findById(String id) {
-		
 		Optional<SalaDocument> doc = this.repository.findById(id);
-		
 		if(doc.isPresent()) {
-			return new Sala(doc.get().getId(), 
-							doc.get().getNome(), 
-							doc.get().getDescricao(), 
-							doc.get().getUnidade());
+			
+			Sala sala = new Sala(doc.get().getId(), 
+					doc.get().getNome(), 
+					doc.get().getDescricao(), 
+					doc.get().getUnidade());
+			
+			return sala;
 		}
 		return null;
 	}

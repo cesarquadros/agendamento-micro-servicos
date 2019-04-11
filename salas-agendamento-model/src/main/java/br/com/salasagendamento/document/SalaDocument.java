@@ -11,6 +11,7 @@ public class SalaDocument {
 	private Unidade unidade;
 	private String nome;
 	private String descricao;
+	
 	public String getId() {
 		return id;
 	}
@@ -34,5 +35,9 @@ public class SalaDocument {
 	}
 	public void setUnidade(Unidade unidade) {
 		this.unidade = unidade;
+	}
+	@Override
+	public String toString() {
+		return "SalaDocument [id=" + id + ", unidade=" + unidade + ", nome=" + nome + ", descricao=" + descricao + "]";
 	}
 }

@@ -15,12 +15,14 @@ import br.com.salasagendamento.domain.exception.AgendamentoException;
 import br.com.salasagendamento.domain.port.AgendamentoPersistencePort;
 import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.integration.feign.impl.ClienteFeignImpl;
+import br.com.salasagendamento.integration.feign.impl.SalaFeignIntegration;
 import br.com.salasagendamento.integration.parse.DocumentParaModel;
 import br.com.salasagendamento.integration.parse.ModelParaDocument;
 import br.com.salasagendamento.integration.repository.AgendamentoRepository;
 import br.com.salasagendamento.model.Agendamento;
 import br.com.salasagendamento.model.Agendamento.Status;
 import br.com.salasagendamento.model.Cliente;
+import br.com.salasagendamento.model.Sala;
 
 @Repository
 public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort {
@@ -33,6 +35,8 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 	private ModelParaDocument dtoParaDoc;
 	@Autowired
 	private ClienteFeignImpl serviceCliente;
+	@Autowired
+	private SalaFeignIntegration salaIntegration;
 	
 	@Override
 	public Agendamento salvar(Agendamento agendamento) {
@@ -40,10 +44,14 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 		if(ObjectUtils.isEmpty(cliente)) {
 			throw new AgendamentoException("Nao existe cadastro para esse CPF");
 		}
-		AgendamentoDocument agendamentoDoc = this.dtoParaDoc.parse(agendamento, cliente);
+		
+		Sala sala = this.salaIntegration.findSalaById(agendamento.getSala().getIdSala());
+		
+		AgendamentoDocument agendamentoDoc = this.dtoParaDoc.parse(agendamento, cliente, sala);
 		this.agendamentoRepository.save(agendamentoDoc);
 		agendamento.setId(agendamentoDoc.getId());
 		agendamento.setCliente(agendamentoDoc.getCliente());
+		agendamento.setSala(sala);
 		return agendamento;
 	}
 
@@ -61,7 +69,7 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 			builder.and(QAgendamentoDocument.agendamentoDocument.dataAgendamento.between(filtroDTO.getDataInicial(), filtroDTO.getDataFinal()));
 		}
 		if(!ObjectUtils.isEmpty(filtroDTO.getIdSala())) {
-			builder.and(QAgendamentoDocument.agendamentoDocument.sala.id.eq(filtroDTO.getIdSala()));
+			builder.and(QAgendamentoDocument.agendamentoDocument.sala.idSala.eq(filtroDTO.getIdSala()));
 		}
 		if(!ObjectUtils.isEmpty(filtroDTO.getStatus())) {
 			builder.and(QAgendamentoDocument.agendamentoDocument.status.eq(filtroDTO.getStatus()));

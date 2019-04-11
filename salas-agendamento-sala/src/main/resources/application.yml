@@ -1,4 +1,4 @@
-salas-agendamento:
+salas-agendamento-sala:
   request:
     mapping:
       salas:

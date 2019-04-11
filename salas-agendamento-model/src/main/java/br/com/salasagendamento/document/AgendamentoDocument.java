@@ -60,4 +60,9 @@ public class AgendamentoDocument {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
+	@Override
+	public String toString() {
+		return "AgendamentoDocument [id=" + id + ", cliente=" + cliente + ", dataAgendamento=" + dataAgendamento
+				+ ", status=" + status + ", hora=" + hora + ", sala=" + sala + "]";
+	}
 }

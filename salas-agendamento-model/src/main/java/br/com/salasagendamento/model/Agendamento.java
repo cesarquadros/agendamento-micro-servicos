@@ -54,4 +54,5 @@ public class Agendamento {
 		return "Agendamento [id=" + id + ", cliente=" + cliente + ", dataAgendamento=" + dataAgendamento + ", status="
 				+ status + ", hora=" + hora + ", sala=" + sala + "]";
 	}
+	
 }

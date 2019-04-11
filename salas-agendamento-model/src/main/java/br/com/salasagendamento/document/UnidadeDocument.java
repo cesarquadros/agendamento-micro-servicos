@@ -38,4 +38,9 @@ public class UnidadeDocument {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	@Override
+	public String toString() {
+		return "UnidadeDocument [id=" + id + ", nomeUnidade=" + nomeUnidade + ", endereco=" + endereco + ", listaSala="
+				+ listaSala + "]";
+	}
 }

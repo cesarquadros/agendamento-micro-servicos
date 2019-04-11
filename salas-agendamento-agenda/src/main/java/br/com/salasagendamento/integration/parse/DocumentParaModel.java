@@ -18,6 +18,7 @@ public class DocumentParaModel {
 		agendamento.setDataAgendamento(agendamentoDoc.getDataAgendamento());
 		agendamento.setStatus(agendamentoDoc.getStatus());
 		agendamento.setHora(hora);
+		agendamento.setSala(agendamentoDoc.getSala());
 		return agendamento;
 	}
 	

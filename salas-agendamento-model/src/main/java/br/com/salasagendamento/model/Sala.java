@@ -14,6 +14,10 @@ public class Sala {
 		this.descricao = descricao;
 		this.unidade = unidade;
 	}
+	public Sala() {
+		
+	}
+	
 	public String getIdSala() {
 		return idSala;
 	}
@@ -38,9 +42,8 @@ public class Sala {
 	public void setUnidade(Unidade unidade) {
 		this.unidade = unidade;
 	}
-	
 	@Override
 	public String toString() {
-		return "Sala [idSala=" + idSala + ", nome=" + nome + ", descricao=" + descricao + "]";
+		return "Sala [idSala=" + idSala + ", nome=" + nome + ", descricao=" + descricao + ", unidade=" + unidade + "]";
 	}
 }
