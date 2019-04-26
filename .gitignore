@@ -10,3 +10,9 @@ salas-agendamento-front/\.mvn/wrapper/MavenWrapperDownloader\.java
 salas-agendamento-front/\.mvn/wrapper/maven-wrapper\.properties
 
 salas-agendamento-front/\.mvn/wrapper/maven-wrapper\.jar
+
+salas-agendamento-api/\.mvn/wrapper/maven-wrapper\.jar
+
+salas-agendamento-api/\.mvn/wrapper/maven-wrapper\.properties
+
+salas-agendamento-api/\.mvn/wrapper/MavenWrapperDownloader\.java

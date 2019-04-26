@@ -9,7 +9,7 @@ import br.com.salasagendamento.integration.feign.SalaIntegration;
 import br.com.salasagendamento.model.Sala;
 
 @Component
-public class SalaFeignIntegration {
+public class SalaFeignService {
 	
 	@Autowired
 	private SalaIntegration salaIntegration;

@@ -14,8 +14,8 @@ import br.com.salasagendamento.document.QAgendamentoDocument;
 import br.com.salasagendamento.domain.exception.AgendamentoException;
 import br.com.salasagendamento.domain.port.AgendamentoPersistencePort;
 import br.com.salasagendamento.dto.FiltroDTO;
-import br.com.salasagendamento.integration.feign.impl.ClienteFeignImpl;
-import br.com.salasagendamento.integration.feign.impl.SalaFeignIntegration;
+import br.com.salasagendamento.integration.feign.impl.ClienteFeignService;
+import br.com.salasagendamento.integration.feign.impl.SalaFeignService;
 import br.com.salasagendamento.integration.parse.DocumentParaModel;
 import br.com.salasagendamento.integration.parse.ModelParaDocument;
 import br.com.salasagendamento.integration.repository.AgendamentoRepository;
@@ -34,9 +34,9 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 	@Autowired
 	private ModelParaDocument dtoParaDoc;
 	@Autowired
-	private ClienteFeignImpl serviceCliente;
+	private ClienteFeignService serviceCliente;
 	@Autowired
-	private SalaFeignIntegration salaIntegration;
+	private SalaFeignService salaIntegration;
 	
 	@Override
 	public Agendamento salvar(Agendamento agendamento) {
