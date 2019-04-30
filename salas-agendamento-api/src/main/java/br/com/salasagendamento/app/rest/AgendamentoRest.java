@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salasagendamento.dto.AgendamentoDTO;
@@ -21,9 +22,10 @@ import br.com.salasagendamento.integration.feign.impl.AgendaIntegrationService;
 import br.com.salasagendamento.model.Agendamento;
 import io.swagger.annotations.Api;
 
-@RestController(value="/api/v1/")
 @CrossOrigin(origins = "*")
 @Api(value = "API Agendamento", tags = "Agendamento")
+@RestController
+@RequestMapping("/api/v1")
 public class AgendamentoRest {
 	
 	@Autowired
@@ -47,19 +49,19 @@ public class AgendamentoRest {
 		return ResponseEntity.ok(listarPorFiltro);
 	}
 	
-	@PutMapping(value = "agendamento/finalizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/agendamento/finalizar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> finalizar(@PathVariable(value = "id") String id){
 		this.agendaIntegrationService.finalizar(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@PutMapping(value = "agendamento/cancelar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/agendamento/cancelar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> cancelar(@PathVariable(value = "id") String id){
 		this.agendaIntegrationService.cancelar(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
-	@GetMapping(value = "agendamento/horario/", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/agendamento/horario/", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<LocalTime>> horariosDisponiveis(String data){
 		return ResponseEntity.ok(this.agendaIntegrationService.horariosLivres(data));
 	}

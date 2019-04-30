@@ -30,32 +30,28 @@ public class HorarioService {
 	}
 	
 	public List<LocalTime> getHorariosLivresDia(LocalDate data) {
-		
 		FiltroDTO filtro = new  FiltroDTO();
 		filtro.setDataInicial(data);
 		filtro.setDataFinal(data);
-		
 		List<Agendamento> agendamentos = this.agendamentoAdapter.listarPorFiltro(filtro);
-		
 		return horariosDisponiveis(agendamentos, getTodosHorarios());
 	}
 	
 	private List<LocalTime> horariosDisponiveis(List<Agendamento> agendamentos, List<LocalTime> todosHorarios){
-
 		List<LocalTime> horariosLivres = new ArrayList<>();
-		
-		LocalTime horaAtual = LocalTime.now();
-		
 		todosHorarios.stream().forEach(horario -> {
 			Optional<Agendamento> find = agendamentos
 					.stream()
-					.filter(a -> a.getHora().equals(horario.toString()) && horario.isAfter(horaAtual))
+					.filter(a -> a.getHora().equals(horario.toString()))
 					.findAny();
 			
 			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {
-				horariosLivres.add(horario);
+				if(horario.isAfter(LocalTime.now()))horariosLivres.add(horario);
 			}
 		});
+		
+		
+		
 		return horariosLivres;
 	}
 }

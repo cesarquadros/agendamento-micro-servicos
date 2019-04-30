@@ -28,8 +28,5 @@ public interface AgendaFeignIntegration {
 		
 	@PutMapping(value = "/agendamento/cancelar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<Agendamento> cancelar(@PathVariable(value = "id") String id);
-	
-//	@GetMapping(value = " /agendamento/filtro", produces = MediaType.APPLICATION_JSON_VALUE)
-//	ResponseEntity<List<Agendamento>> listarPorFiltro(FiltroDTO filtroDTO);
 }
 
