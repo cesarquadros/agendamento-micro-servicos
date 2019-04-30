@@ -4,10 +4,10 @@ salas-agendamento-agendamento:
       salvar: /agendamento
       listar: /agendamento
       listarFiltro: /agendamento/filtro
-      listarFiltroDataESala: agendamento/filtro-data-sala
-      horariosDisponiveisPorData: agendamento/horarios-disponiveis
-      finalizarAgendamento: agendamento/finalizar/{id}
-      cancelarAgendamento: agendamento/cancelar/{id}
+      listarFiltroDataESala: /agendamento/filtro-data-sala
+      horariosDisponiveisPorData: /agendamento/horarios-disponiveis
+      finalizarAgendamento: /agendamento/finalizar/{id}
+      cancelarAgendamento: /agendamento/cancelar/{id}
       cliente-integration:
         url: localhost:8082/
         get-cliente: cliente/{cpf}

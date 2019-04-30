@@ -58,14 +58,13 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 	@Override
 	public List<Agendamento> listar() {
 		List<AgendamentoDocument> listaAgendamentosDoc = this.agendamentoRepository.findAll();
-		List<Agendamento> listaAgendamentos = this.docParaDTO.parseList(listaAgendamentosDoc);
-		return listaAgendamentos;
+		return this.docParaDTO.parseList(listaAgendamentosDoc);
 	}
 
 	@Override
 	public List<Agendamento> listarPorFiltro(FiltroDTO filtroDTO) {
 		BooleanBuilder builder = new BooleanBuilder();
-		if(!ObjectUtils.isEmpty(filtroDTO.getDataInicial()) && !ObjectUtils.isEmpty(filtroDTO.getDataInicial())) {
+		if(!ObjectUtils.isEmpty(filtroDTO.getDataInicial()) && !ObjectUtils.isEmpty(filtroDTO.getDataFinal())) {
 			builder.and(QAgendamentoDocument.agendamentoDocument.dataAgendamento.between(filtroDTO.getDataInicial(), filtroDTO.getDataFinal()));
 		}
 		if(!ObjectUtils.isEmpty(filtroDTO.getIdSala())) {
@@ -77,10 +76,12 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 		if(!ObjectUtils.isEmpty(filtroDTO.getCpfCliente())) {
 			builder.and(QAgendamentoDocument.agendamentoDocument.cliente.cpf.eq(filtroDTO.getCpfCliente()));
 		}
+		if(!ObjectUtils.isEmpty(filtroDTO.getIdAgendamento())) {
+			builder.and(QAgendamentoDocument.agendamentoDocument.id.eq(filtroDTO.getIdAgendamento()));
+		}
 		
 		List<AgendamentoDocument> listaAgendamentosDoc = (List<AgendamentoDocument>) this.agendamentoRepository.findAll(builder);
-		List<Agendamento> listaAgendamentos = this.docParaDTO.parseList(listaAgendamentosDoc);
-		return listaAgendamentos;
+		return this.docParaDTO.parseList(listaAgendamentosDoc);
 	}
 
 	@Override
@@ -90,8 +91,7 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 			AgendamentoDocument agendamentoDoc = optional.get();
 			agendamentoDoc.setStatus(Status.FINALIZADO);
 			agendamentoDoc = this.agendamentoRepository.save(agendamentoDoc);
-			Agendamento agendamentoDto = this.docParaDTO.parse(agendamentoDoc);
-			return agendamentoDto;
+			return this.docParaDTO.parse(agendamentoDoc);
 		}
 		return null;
 	}
@@ -103,8 +103,7 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 			AgendamentoDocument agendamentoDoc = optional.get();
 			agendamentoDoc.setStatus(Status.CANCELADO);
 			agendamentoDoc = this.agendamentoRepository.save(agendamentoDoc);
-			Agendamento agendamentoDto = this.docParaDTO.parse(agendamentoDoc);
-			return agendamentoDto;
+			return this.docParaDTO.parse(agendamentoDoc);
 		}
 		return null;
 	}

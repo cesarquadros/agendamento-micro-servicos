@@ -44,10 +44,12 @@ public class HorarioService {
 
 		List<LocalTime> horariosLivres = new ArrayList<>();
 		
+		LocalTime horaAtual = LocalTime.now();
+		
 		todosHorarios.stream().forEach(horario -> {
 			Optional<Agendamento> find = agendamentos
 					.stream()
-					.filter(a -> a.getHora().equals(horario.toString()))
+					.filter(a -> a.getHora().equals(horario.toString()) && horario.isAfter(horaAtual))
 					.findAny();
 			
 			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {

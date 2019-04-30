@@ -49,9 +49,7 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 
 	@Override
 	public ResponseEntity<List<Agendamento>> listar() {
-
 		List<Agendamento> agendamentos = this.agendamentoService.listar();
-
 		return ResponseEntity.ok(agendamentos);
 	}
 
@@ -63,9 +61,7 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 
 	@Override
 	public ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(@RequestParam(value = "data") String data) {
-		
 		LocalDate date = LocalDate.parse(data);
-		
 		return ResponseEntity.ok(horarioService.getHorariosLivresDia(date));
 	}
 

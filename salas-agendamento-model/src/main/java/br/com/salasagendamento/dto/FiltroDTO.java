@@ -16,6 +16,7 @@ public class FiltroDTO {
 	private String idSala;
 	private Status status;
 	private String cpfCliente;
+	private String idAgendamento;
 	
 	public LocalDate getDataInicial() {
 		return dataInicial;
@@ -46,5 +47,11 @@ public class FiltroDTO {
 	}
 	public void setCpfCliente(String cpfCliente) {
 		this.cpfCliente = cpfCliente;
+	}
+	public String getIdAgendamento() {
+		return idAgendamento;
+	}
+	public void setIdAgendamento(String idAgendamento) {
+		this.idAgendamento = idAgendamento;
 	}
 }

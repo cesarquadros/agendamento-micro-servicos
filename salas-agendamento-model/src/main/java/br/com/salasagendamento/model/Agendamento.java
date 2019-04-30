@@ -1,10 +1,10 @@
 package br.com.salasagendamento.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Agendamento {
-	
-	public enum Status {ABERTO,FINALIZADO,CANCELADO}
+public class Agendamento implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 	private Cliente cliente;
@@ -54,5 +54,6 @@ public class Agendamento {
 		return "Agendamento [id=" + id + ", cliente=" + cliente + ", dataAgendamento=" + dataAgendamento + ", status="
 				+ status + ", hora=" + hora + ", sala=" + sala + "]";
 	}
+	public enum Status {ABERTO,FINALIZADO,CANCELADO}
 	
 }
