@@ -24,7 +24,7 @@ import br.com.salasagendamento.messages.MessageHelper;
 import br.com.salasagendamento.model.Agendamento;
 import io.swagger.annotations.Api;
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @Api(value = "Agendamento", tags = "Agendamento")
 public class AgendamentoRestAdapter implements AgendamentoRestPort {
