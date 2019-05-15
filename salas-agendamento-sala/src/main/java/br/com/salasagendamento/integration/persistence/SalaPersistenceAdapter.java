@@ -1,5 +1,6 @@
 package br.com.salasagendamento.integration.persistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,10 @@ public class SalaPersistenceAdapter implements SalaPersistencePort{
 			return sala;
 		}
 		return null;
+	}
+
+	@Override
+	public List<SalaDocument> getSalas() {
+		return this.repository.findAll();
 	}
 }

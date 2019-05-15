@@ -1,8 +1,11 @@
 package br.com.salasagendamento.domain.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.salasagendamento.document.SalaDocument;
 import br.com.salasagendamento.domain.port.SalaPersistencePort;
 import br.com.salasagendamento.model.Sala;
 
@@ -14,5 +17,9 @@ public class SalaService {
 	
 	public Sala findById(String id) {
 		return this.adapter.findById(id);
+	}
+	
+	public List<SalaDocument> getSalas(){
+		return this.adapter.getSalas();
 	}
 }
