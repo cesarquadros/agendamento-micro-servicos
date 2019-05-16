@@ -1,17 +1,17 @@
 version: '3'
 services:
   #------------------------------------------ Servicos Api
-  servico-agenda:
-    build: 
-      dockerfile: ./docker-api.dockerfile
-      context: .
-    image: imagem-api
-    container_name: servico-api
-    ports: 
-      - 9000:9000
-    networks: 
-      agendamento-network:
-        ipv4_address: 192.168.0.100
+ # servico-agenda:
+  #  build: 
+   #   dockerfile: ./docker-api.dockerfile
+    #  context: .
+    #image: imagem-api
+    #container_name: servico-api
+    #ports: 
+    #  - 9000:9000
+    #networks: 
+    #  agendamento-network:
+    #    ipv4_address: 192.168.0.100
   #-------------------------------------------------------------  
   #------------------------------------------ Servicos Agendamento
   servico-agenda:
@@ -42,6 +42,20 @@ services:
         ipv4_address: 192.168.0.20
     depends_on: 
       - mongo-agenda
+  #-------------------------------------------------------------  
+
+  #------------------------------------------ Servico Sala
+  servico-agenda:
+    build: 
+      dockerfile: ./docker-sala.dockerfile
+      context: .
+    image: imagem-sala
+    container_name: servico-sala
+    ports: 
+      - 8083:8083
+    networks: 
+      agendamento-network:
+        ipv4_address: 192.168.0.60
   #-------------------------------------------------------------  
   #--------------------------------------------- Servico Front
   servico-front:
@@ -76,6 +90,15 @@ services:
     networks: 
       agendamento-network:
         ipv4_address: 192.168.0.50
+  #-------------------------------------------------------------
+    #--------------------------------------- Container Mongo Cliente
+  mongo-sala:
+    image: mongo
+    container_name: mongo-sala
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    networks: 
+      agendamento-network:
+        ipv4_address: 192.168.0.70
   #-------------------------------------------------------------
 networks: 
   agendamento-network:

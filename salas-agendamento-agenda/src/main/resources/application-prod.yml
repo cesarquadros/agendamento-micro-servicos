@@ -11,6 +11,9 @@ salas-agendamento-agendamento:
       cliente-integration:
         url: servico-cliente:8082/
         get-cliente: cliente/{cpf}
+      sala-integration:
+        url: servico-cliente:8083/
+        get-sala: sala/{id}
   horarios:
     08:00,
     09:00,

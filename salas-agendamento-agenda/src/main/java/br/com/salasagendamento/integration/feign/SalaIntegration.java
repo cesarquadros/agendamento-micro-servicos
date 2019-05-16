@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import br.com.salasagendamento.model.Sala;
 
-@FeignClient(name = "sala-agendamento-sala", url =  "localhost:8083/")
+@FeignClient(name = "sala-agendamento-sala", url =  "${salas-agendamento-agendamento.request.mapping.sala-integration.url}")
 public interface SalaIntegration {
 	
-	@GetMapping(value = "sala/{id}")
+	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.sala-integration.get-sala}")
 	ResponseEntity<Sala> findById(@PathVariable(value = "id") String id);
 
 }
