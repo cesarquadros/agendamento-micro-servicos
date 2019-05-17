@@ -5,6 +5,7 @@ salas-agendamento-sala:
         findById: sala/{id}
         listaSalasUnidade: sala-unidades/{idUnidade}
         getSalas: salas
+        salvar: /sala
         
 spring:
   data.mongodb:

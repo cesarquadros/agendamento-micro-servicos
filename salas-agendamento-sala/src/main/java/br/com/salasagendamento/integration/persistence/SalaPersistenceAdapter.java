@@ -36,4 +36,9 @@ public class SalaPersistenceAdapter implements SalaPersistencePort{
 	public List<SalaDocument> getSalas() {
 		return this.repository.findAll();
 	}
+
+	@Override
+	public SalaDocument salvar(SalaDocument sala) {
+		return this.repository.save(sala);
+	}
 }

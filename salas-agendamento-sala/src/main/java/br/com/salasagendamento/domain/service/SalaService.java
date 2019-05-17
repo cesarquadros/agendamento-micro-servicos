@@ -22,4 +22,8 @@ public class SalaService {
 	public List<SalaDocument> getSalas(){
 		return this.adapter.getSalas();
 	}
+
+	public SalaDocument salvar(SalaDocument sala) {
+		return this.adapter.salvar(sala);
+	}
 }

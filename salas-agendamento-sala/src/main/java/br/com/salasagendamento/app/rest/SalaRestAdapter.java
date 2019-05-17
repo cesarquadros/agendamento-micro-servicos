@@ -28,4 +28,9 @@ public class SalaRestAdapter implements SalaRestPort {
 	public ResponseEntity<List<SalaDocument>> getSalas() {
 		return ResponseEntity.ok(service.getSalas());
 	}
+
+	@Override
+	public ResponseEntity<SalaDocument> salvar(SalaDocument salaDocument) {
+		return ResponseEntity.ok(service.salvar(salaDocument));
+	}
 }
