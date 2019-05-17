@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import br.com.salasagendamento.domain.exception.AgendamentoException;
 import br.com.salasagendamento.domain.port.AgendamentoPersistencePort;
 import br.com.salasagendamento.dto.FiltroDTO;
 import br.com.salasagendamento.integration.persistence.HorarioPersistenceAdapter;
@@ -29,10 +30,16 @@ public class HorarioService {
 		return this.horarioPersistence.buscarTodosHorarios();
 	}
 	
-	public List<LocalTime> getHorariosLivresDia(LocalDate data) {
+	public List<LocalTime> getHorariosLivresDia(LocalDate data, String idSala) {
 		FiltroDTO filtro = new  FiltroDTO();
+		
+		if(ObjectUtils.isEmpty(idSala)) {
+			throw new AgendamentoException("Sala não pode ser nula");
+		}
+		
 		filtro.setDataInicial(data);
 		filtro.setDataFinal(data);
+		filtro.setIdSala(idSala);
 		List<Agendamento> agendamentos = this.agendamentoAdapter.listarPorFiltro(filtro);
 		return horariosDisponiveis(agendamentos, getTodosHorarios());
 	}

@@ -31,7 +31,7 @@ public interface AgendamentoRestPort {
 	ResponseEntity<List<Agendamento>> listarPorFiltro(FiltroDTO filtroDTO);
 	
 	@GetMapping(value = "${salas-agendamento-agendamento.request.mapping.horariosDisponiveisPorData}", produces = MediaType.APPLICATION_JSON_VALUE)
-	ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(@PathParam(value = "data") String data);
+	ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(@PathParam(value = "data") String data, @PathParam(value = "idSala") String idSala);
 	
 	@PutMapping(value = "${salas-agendamento-agendamento.request.mapping.finalizarAgendamento}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<Agendamento> finalizar(@PathVariable(value = "id") String id);

@@ -60,9 +60,9 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	}
 
 	@Override
-	public ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(@RequestParam(value = "data") String data) {
+	public ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(@RequestParam(value = "data") String data, @RequestParam(value = "idSala") String idSala) {
 		LocalDate date = LocalDate.parse(data);
-		return ResponseEntity.ok(horarioService.getHorariosLivresDia(date));
+		return ResponseEntity.ok(horarioService.getHorariosLivresDia(date, idSala));
 	}
 
 	@Override
