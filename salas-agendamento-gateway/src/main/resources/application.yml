@@ -1,0 +1,17 @@
+server:
+  port: 9091
+  
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+#  Uncomment to disable auto-registering all services read from Eureka
+#  ignoredServices: '*'
+  routes:
+    ms-agendamento:
+        path: /ms-agendamento/**
+        serviceId: salas-agendamento-agenda
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9090/eureka/

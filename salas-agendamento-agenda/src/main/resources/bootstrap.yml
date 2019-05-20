@@ -1,6 +1,6 @@
 spring:
   application:
-    name: salas-agendamento-agendamento
+    name: salas-agendamento-agenda
 #  cloud:
 #    config:
 #      uri: http://localhost:9090
