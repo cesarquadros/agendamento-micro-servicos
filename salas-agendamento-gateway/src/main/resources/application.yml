@@ -8,9 +8,15 @@ zuul:
 #  ignoredServices: '*'
   routes:
     ms-agendamento:
-        path: /ms-agendamento/**
-        serviceId: salas-agendamento-agenda
-
+      path: /ms-agendamento/**
+      serviceId: salas-agendamento-agenda
+    ms-sala:
+      path: /ms-sala/**
+      serviceId: salas-agendamento-sala
+    ms-cliente:
+      path: /ms-cliente/**  
+      serviceId: salas-agendamento-cliente
+      
 eureka:
   client:
     serviceUrl:

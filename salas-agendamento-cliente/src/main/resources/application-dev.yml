@@ -5,10 +5,10 @@ salas-agendamento:
       listarClientes: /cliente
       findByCpf: /cliente/{cpf}
       
-#eureka:
-#  client:
-#    serviceUrl:
-#      defaultZone: http://127.0.0.1:9091/eureka/
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9090/eureka/
     
 spring:
   data.mongodb:
