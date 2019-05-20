@@ -14,7 +14,7 @@ services:
         ipv4_address: 192.168.0.10
     depends_on: 
       - mongo-agenda
-    #--------------------------------------- Container Mongo Agenda
+  #--------------------------------------- Container Mongo Agenda
   mongo-agenda:
     image: mongo
     container_name: mongo-agenda
@@ -47,9 +47,9 @@ services:
       agendamento-network:
         ipv4_address: 192.168.0.50
   #----------------------------------------------------------------------------------------------------------------------------------------------
-
+  
   #------------------------------------------ Servico Sala
-  servico-agenda:
+  servico-sala:
     build: 
       dockerfile: ./docker-sala.dockerfile
       context: .
@@ -60,7 +60,6 @@ services:
     networks: 
       agendamento-network:
         ipv4_address: 192.168.0.60
-  #-------------------------------------------------------------  
   #--------------------------------------- Container Mongo sala
   mongo-sala:
     image: mongo
@@ -69,7 +68,7 @@ services:
     networks: 
       agendamento-network:
         ipv4_address: 192.168.0.70
-  #----------------------------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------------------
 networks: 
   agendamento-network:
     driver: bridge
