@@ -19,7 +19,7 @@ public class SalaRestAdapter implements SalaRestPort {
 	private SalaService service;
 	
 	@Override
-	public ResponseEntity<Sala> findById(@PathVariable(value = "id")String id) {
+	public ResponseEntity<Sala>findById(@PathVariable(value = "id") String id) {
 		Sala sala = this.service.findById(id);
 		return ResponseEntity.ok(sala);
 	}
