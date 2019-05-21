@@ -7,10 +7,12 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan(basePackages = {"br.com.salasagendamento"})
+@ComponentScan(basePackages = { "br.com.salasagendamento" })
 public class SalasAgendamentoRestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SalasAgendamentoRestApplication.class, args);
 	}
+
+
 }

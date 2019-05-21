@@ -13,5 +13,4 @@ public class SalasAgendamentoGatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SalasAgendamentoGatewayApplication.class, args);
 	}
-
 }
