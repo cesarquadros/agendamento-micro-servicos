@@ -3,7 +3,9 @@ package br.com.salasagendamento.filter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.util.ZuulRuntimeException;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ObjectUtils;
 
@@ -13,6 +15,9 @@ import com.netflix.zuul.exception.ZuulException;
 
 public class GatewayFilter extends ZuulFilter{
 
+	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
+	
 	@Override
 	public boolean shouldFilter() {
 		return true;
@@ -26,7 +31,7 @@ public class GatewayFilter extends ZuulFilter{
         HttpSession session = request.getSession();
         String headerToken = request.getHeader("token");
         
-        if(logado(session, headerToken)) {
+        if(!logado(session, headerToken)) {
         	ZuulException zuulException = new ZuulException("Realizar o LOGIN", HttpStatus.UNAUTHORIZED.value(), "Usuario não autorizado");
         	throw new ZuulRuntimeException(zuulException);
         }
@@ -45,7 +50,10 @@ public class GatewayFilter extends ZuulFilter{
 
 	public Boolean logado(HttpSession session, String token) {
 		String tokenSession = (String) session.getAttribute(token);
-		if(ObjectUtils.isEmpty(tokenSession)) {
+		
+		String tokenExistente = redisTemplate.opsForValue().get(token);
+		
+		if(ObjectUtils.isEmpty(tokenExistente)) {
 			return false;
 		}
 		return true;
