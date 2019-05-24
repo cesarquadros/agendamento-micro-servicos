@@ -18,6 +18,7 @@ public class ModelParaDocument {
 		clienteDocument.setSobrenome(cliente.getSobrenome());
 		clienteDocument.setTelCelular(cliente.getTelCelular());
 		clienteDocument.setTelFixo(cliente.getTelFixo());
+		clienteDocument.setAutenticacao(cliente.getAutenticacao());
 		return clienteDocument;
 	}
 }

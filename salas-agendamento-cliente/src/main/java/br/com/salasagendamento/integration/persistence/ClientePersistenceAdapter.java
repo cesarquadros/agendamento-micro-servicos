@@ -12,6 +12,7 @@ import br.com.salasagendamento.domain.port.ClientePersistencePort;
 import br.com.salasagendamento.integration.parse.DocumentParaModel;
 import br.com.salasagendamento.integration.parse.ModelParaDocument;
 import br.com.salasagendamento.integration.repository.ClienteRepository;
+import br.com.salasagendamento.model.Autenticacao;
 import br.com.salasagendamento.model.Cliente;
 
 @Repository
@@ -50,5 +51,18 @@ public class ClientePersistenceAdapter implements ClientePersistencePort {
 	public String deletar(String id) {
 		return null;
 	}
-
+	@Override
+	public Boolean existeUsuario(String user, String pass) {
+		
+		Autenticacao aut = new Autenticacao();
+		aut.setPass(pass);
+		aut.setUser(user);
+		
+		ClienteDocument findByAutenticacao = this.repository.findByAutenticacao(aut);
+		
+		if(ObjectUtils.isEmpty(findByAutenticacao)) {
+			return false;
+		}
+		return true;
+	}
 }

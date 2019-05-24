@@ -18,7 +18,7 @@ public class DTOParaModel {
 		cliente.setSobrenome(dto.getSobrenome());
 		cliente.setTelCelular(dto.getTelCelular());
 		cliente.setTelFixo(dto.getTelFixo());
-		
+		cliente.setAutenticacao(dto.getAutenticacao());
 		return cliente;
  	}
 }

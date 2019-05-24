@@ -10,4 +10,5 @@ public interface ClientePersistencePort {
 	String deletar(String id);
 	List<Cliente> listarClientes();
 	Cliente findByCpf(String cpf);
+	Boolean existeUsuario(String user, String pass);
 }

@@ -3,8 +3,10 @@ package br.com.salasagendamento.integration.repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import br.com.salasagendamento.document.ClienteDocument;
+import br.com.salasagendamento.model.Autenticacao;
 
 public interface ClienteRepository extends MongoRepository<ClienteDocument, String>{
 
 	ClienteDocument findByCpf(String cpf);
+	ClienteDocument findByAutenticacao(Autenticacao autenticacao);
 }

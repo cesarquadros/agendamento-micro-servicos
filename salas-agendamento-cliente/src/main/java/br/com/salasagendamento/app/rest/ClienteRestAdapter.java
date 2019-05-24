@@ -9,6 +9,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salasagendamento.app.parse.DTOParaModel;
@@ -42,12 +43,18 @@ public class ClienteRestAdapter implements ClienteRestPort {
 	}
 	
 	@Override
-	public ResponseEntity<Cliente> findByCpf(@PathVariable(value = "cpf") String cpf) {
+	public ResponseEntity<Object> findByCpf(@PathVariable(value = "cpf") String cpf) {
 		Cliente cliente = this.service.findByCpf(cpf);
 		if(ObjectUtils.isEmpty(cliente)) {
-			ResponseEntity<Cliente> response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			return response;
 		}
 		return ResponseEntity.ok(cliente);
+	}
+
+	@Override
+	public ResponseEntity<Object> findUsuario(@RequestHeader("user")String user,@RequestHeader("pass")String pass) {
+		Boolean usuarioExiste = this.service.existeUsuario(user, pass);
+		return ResponseEntity.ok(usuarioExiste);
 	}
 }

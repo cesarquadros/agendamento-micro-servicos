@@ -13,6 +13,7 @@ public class Cliente {
 	private String email;
 	private String sexo;
 	private LocalDate dataNascimento;
+	private Autenticacao autenticacao;
 	
 	public String getId() {
 		return id;
@@ -68,10 +69,16 @@ public class Cliente {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	public Autenticacao getAutenticacao() {
+		return autenticacao;
+	}
+	public void setAutenticacao(Autenticacao autenticacao) {
+		this.autenticacao = autenticacao;
+	}
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telFixo=" + telFixo
 				+ ", telCelular=" + telCelular + ", cpf=" + cpf + ", email=" + email + ", sexo=" + sexo
-				+ ", dataNascimento=" + dataNascimento + "]";
+				+ ", dataNascimento=" + dataNascimento + ", autenticacao=" + autenticacao + "]";
 	}
 }

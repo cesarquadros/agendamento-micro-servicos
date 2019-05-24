@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import br.com.salasagendamento.dto.ClienteDTO;
 import br.com.salasagendamento.model.Cliente;
@@ -21,5 +22,8 @@ public interface ClienteRestPort {
 	ResponseEntity<List<Cliente>> listarClientes();
 	
 	@GetMapping(value = "${salas-agendamento.request.mapping.findByCpf}")
-	ResponseEntity<?> findByCpf(@PathVariable(value = "cpf") String cpf );
+	ResponseEntity<Object> findByCpf(@PathVariable(value = "cpf") String cpf );
+	
+	@GetMapping(value = "${salas-agendamento.request.mapping.usuario}")
+	ResponseEntity<Object> findUsuario(@RequestHeader("user")String user,@RequestHeader("pass")String pass);
 }

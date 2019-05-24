@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import br.com.salasagendamento.domain.exception.ClienteException;
-import br.com.salasagendamento.integration.persistence.ClientePersistenceAdapter;
+import br.com.salasagendamento.domain.port.ClientePersistencePort;
 import br.com.salasagendamento.model.Cliente;
 
 @Service
@@ -16,14 +16,12 @@ public class ClienteService {
 	private static final String CLIENTE_JA_CADASTRADO = "Cliente ja cadastrado";
 	
 	@Autowired
-	private ClientePersistenceAdapter adapter;
+	private ClientePersistencePort adapter;
 
 	public Cliente salvar(Cliente cliente) {
-		
 		if(!ObjectUtils.isEmpty(findByCpf(cliente.getCpf()))) {
 			throw new ClienteException(CLIENTE_JA_CADASTRADO);
 		}
-		
 		return this.adapter.salvar(cliente);
 	}
 	
@@ -33,5 +31,9 @@ public class ClienteService {
 	
 	public Cliente findByCpf(String cpf) {
 		return this.adapter.findByCpf(cpf);
+	}
+	
+	public Boolean  existeUsuario(String user, String pass) {
+		return this.adapter.existeUsuario(user, pass);
 	}
 }

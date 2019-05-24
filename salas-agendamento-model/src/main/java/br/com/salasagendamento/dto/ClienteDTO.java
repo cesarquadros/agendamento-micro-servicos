@@ -2,6 +2,8 @@ package br.com.salasagendamento.dto;
 
 import java.time.LocalDate;
 
+import br.com.salasagendamento.model.Autenticacao;
+
 public class ClienteDTO {
 	
 	private String nome;
@@ -12,6 +14,7 @@ public class ClienteDTO {
 	private String email;
 	private String sexo;
 	private LocalDate dataNascimento;
+	private Autenticacao autenticacao;
 	
 	public String getNome() {
 		return nome;
@@ -60,5 +63,11 @@ public class ClienteDTO {
 	}
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	public Autenticacao getAutenticacao() {
+		return autenticacao;
+	}
+	public void setAutenticacao(Autenticacao autenticacao) {
+		this.autenticacao = autenticacao;
 	}
 }

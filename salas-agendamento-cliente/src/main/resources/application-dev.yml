@@ -4,6 +4,7 @@ salas-agendamento:
       salvar: /cliente
       listarClientes: /cliente
       findByCpf: /cliente/{cpf}
+      usuario: /usuario
       
 eureka:
   client:
