@@ -16,7 +16,12 @@ zuul:
     ms-cliente:
       path: /ms-cliente/**  
       serviceId: salas-agendamento-cliente
-      
+
+spring:
+  redis:
+    host: 192.168.0.200       
+    port: 6379
+
 eureka:
   client:
     serviceUrl:

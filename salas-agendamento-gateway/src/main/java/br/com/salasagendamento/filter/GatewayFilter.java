@@ -3,6 +3,8 @@ package br.com.salasagendamento.filter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.util.ZuulRuntimeException;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,7 +16,13 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
 public class GatewayFilter extends ZuulFilter{
+	
+	private Logger LOG = LoggerFactory.getLogger(GatewayFilter.class);
 
+	private static final String USUARIO_NAO_AUTORIZADO = "Usuario não autorizado";
+	private static final String REALIZAR_O_LOGIN = "Realizar o LOGIN";
+	private static final String PRE = "pre";
+	private static final String TOKEN = "token";
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 	
@@ -26,13 +34,13 @@ public class GatewayFilter extends ZuulFilter{
 	@Override
 	public Object run() throws ZuulException {
         RequestContext ctx = RequestContext.getCurrentContext();
-        //System.out.println(ctx.get("serviceId"));
         HttpServletRequest request = ctx.getRequest();
-        HttpSession session = request.getSession();
-        String headerToken = request.getHeader("token");
+        String headerToken = request.getHeader(TOKEN);
         
-        if(!logado(session, headerToken)) {
-        	ZuulException zuulException = new ZuulException("Realizar o LOGIN", HttpStatus.UNAUTHORIZED.value(), "Usuario não autorizado");
+        LOG.info("Token recuperado do cabeçalho: " + headerToken);
+        
+        if(!logado(headerToken)) {
+        	ZuulException zuulException = new ZuulException(REALIZAR_O_LOGIN, HttpStatus.UNAUTHORIZED.value(), USUARIO_NAO_AUTORIZADO);
         	throw new ZuulRuntimeException(zuulException);
         }
 		return true;
@@ -40,7 +48,7 @@ public class GatewayFilter extends ZuulFilter{
 	
 	@Override
 	public String filterType() {
-		return "pre";
+		return PRE;
 	}
 
 	@Override
@@ -48,11 +56,8 @@ public class GatewayFilter extends ZuulFilter{
 		return 1;
 	}
 
-	public Boolean logado(HttpSession session, String token) {
-		String tokenSession = (String) session.getAttribute(token);
-		
+	public Boolean logado(String token) {
 		String tokenExistente = redisTemplate.opsForValue().get(token);
-		
 		if(ObjectUtils.isEmpty(tokenExistente)) {
 			return false;
 		}
