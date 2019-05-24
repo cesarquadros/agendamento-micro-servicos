@@ -1,5 +1,6 @@
 package br.com.salasagendamento.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -10,7 +11,8 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class AutenticacaoService {
 
-	private static final String URL = "http://localhost:8082/usuario";
+	@Value("${gateway.cliente-integration.url-user}")
+	private String URL;
 	
 	public Boolean autenticar(String user, String pass) {
 		RestTemplate restTemplate = new RestTemplate();

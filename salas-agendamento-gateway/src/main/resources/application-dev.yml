@@ -1,3 +1,7 @@
+gateway:
+  cliente-integration:
+    url-user: servico-cliente:8082/usuario
+
 server:
   port: 9091
   
@@ -17,8 +21,14 @@ zuul:
       path: /ms-cliente/**  
       serviceId: salas-agendamento-cliente
       
+spring:
+  redis:
+    host: localhost       
+    port: 6379
+      
 eureka:
   client:
     serviceUrl:
       #defaultZone: http://192.168.0.100:9090/eureka/
-      defaultZone: http://127.0.0.1:9090/eureka/
+#      defaultZone: http://127.0.0.1:9090/eureka/
+      defaultZone: http://104.197.95.182:9090/eureka
