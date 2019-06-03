@@ -1,6 +1,6 @@
 gateway:
   cliente-integration:
-    url-user: 192.168.0.20:8082/usuario
+    url-user: http://192.168.0.20:8082/usuario
 
 server:
   port: 9091
