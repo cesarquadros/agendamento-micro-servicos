@@ -1,7 +1,6 @@
 package br.com.salasagendamento.filter;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,16 +32,33 @@ public class GatewayFilter extends ZuulFilter{
 
 	@Override
 	public Object run() throws ZuulException {
+		
+		LOG.info(">>>>>>>>>>>>>>>>>>>>> Acessando Zuul");
+		
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
+        
+        LOG.info("Recuperando TOKEN do cabeçalho");
         String headerToken = request.getHeader(TOKEN);
         
-        LOG.info("Token recuperado do cabeçalho: " + headerToken);
+        LOG.info("Token recuperado do cabeçalho: {}", headerToken);
         
-        if(!logado(headerToken)) {
-        	ZuulException zuulException = new ZuulException(REALIZAR_O_LOGIN, HttpStatus.UNAUTHORIZED.value(), USUARIO_NAO_AUTORIZADO);
+        if(ObjectUtils.isEmpty(headerToken) || !verificaToken(headerToken)) {
+        	LOG.info(">>>>>>>>>>>>>>>>>>>>>>> TOKEN INEXISTENTE OU INVALIDO");
+         	ZuulException zuulException = new ZuulException(REALIZAR_O_LOGIN, HttpStatus.UNAUTHORIZED.value(), USUARIO_NAO_AUTORIZADO);
         	throw new ZuulRuntimeException(zuulException);
         }
+		return true;
+	}
+	
+	public Boolean verificaToken(String token) {
+		LOG.info("Verificando se TOKEN é valido");
+		String tokenExistente = redisTemplate.opsForValue().get(token);
+		if(ObjectUtils.isEmpty(tokenExistente)) {
+			LOG.info("TOKEN não é valido");
+			return false;
+		}
+		LOG.info("TOKEN é valido");
 		return true;
 	}
 	
@@ -50,17 +66,8 @@ public class GatewayFilter extends ZuulFilter{
 	public String filterType() {
 		return PRE;
 	}
-
 	@Override
 	public int filterOrder() {
 		return 1;
-	}
-
-	public Boolean logado(String token) {
-		String tokenExistente = redisTemplate.opsForValue().get(token);
-		if(ObjectUtils.isEmpty(tokenExistente)) {
-			return false;
-		}
-		return true;
 	}
 }
