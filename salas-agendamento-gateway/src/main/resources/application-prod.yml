@@ -1,3 +1,7 @@
+gateway:
+  cliente-integration:
+    url-user: servico-cliente:8082/usuario
+
 server:
   port: 9091
   
