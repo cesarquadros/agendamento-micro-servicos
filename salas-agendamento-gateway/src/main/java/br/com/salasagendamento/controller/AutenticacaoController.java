@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salasagendamento.service.AutenticacaoService;
+import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping(value = "/")
+@Api(value = "Gateway", tags = "Zuul")
 public class AutenticacaoController {
 	
 	private Logger LOG = LoggerFactory.getLogger(AutenticacaoController.class);
@@ -31,7 +33,7 @@ public class AutenticacaoController {
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
-	@GetMapping(value = "/login")
+	@GetMapping(value = "login")
 	public ResponseEntity<Object> login(@RequestHeader("user") String user, 
 										@RequestHeader("pass") String pass,
 										HttpSession session) {
