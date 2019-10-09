@@ -55,7 +55,7 @@ public class AutenticacaoController {
 
     		redisOperation.expire(uuidKey, (long) 360.0, TimeUnit.SECONDS);
     		
-			return ResponseEntity.ok(uuidKey);
+			return ResponseEntity.ok(new Token(uuidKey));
 		} else {
 			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>> USUARIO OU SENHA INVALIDOS");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
