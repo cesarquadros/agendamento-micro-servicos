@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.salasagendamento.controller.AutenticacaoController;
+import br.com.salasagendamento.model.Cliente;
 
 @Service
 public class AutenticacaoService {
@@ -20,14 +20,14 @@ public class AutenticacaoService {
 	
 	private Logger LOG = LoggerFactory.getLogger(AutenticacaoService.class);
 	
-	public Boolean autenticar(String user, String pass) {
+	public Cliente autenticar(String user, String pass) {
 		RestTemplate restTemplate = new RestTemplate();
 		LOG.info(">>>>>>>>>>>>>>>>>>> Setando dados no header");
 		HttpHeaders headers = getHeader(user, pass);
 		HttpEntity<String> entity = new HttpEntity<>(null, headers);
 		
 		LOG.info(">>>>>>>>>>>>>>>>>>> Realizando chamada do serviço cliente");
-		ResponseEntity<Boolean> forEntity = restTemplate.exchange(URL, HttpMethod.GET, entity, Boolean.class);
+		ResponseEntity<Cliente> forEntity = restTemplate.exchange(URL, HttpMethod.GET, entity, Cliente.class);
 		return forEntity.getBody();
 	}
 	

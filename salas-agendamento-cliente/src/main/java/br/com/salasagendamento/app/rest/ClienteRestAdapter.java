@@ -54,7 +54,7 @@ public class ClienteRestAdapter implements ClienteRestPort {
 
 	@Override
 	public ResponseEntity<Object> findUsuario(@RequestHeader("user")String user,@RequestHeader("pass")String pass) {
-		Boolean usuarioExiste = this.service.existeUsuario(user, pass);
+		Cliente usuarioExiste = this.service.existeUsuario(user, pass);
 		return ResponseEntity.ok(usuarioExiste);
 	}
 }

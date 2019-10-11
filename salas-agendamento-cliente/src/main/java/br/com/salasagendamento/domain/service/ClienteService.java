@@ -33,7 +33,7 @@ public class ClienteService {
 		return this.adapter.findByCpf(cpf);
 	}
 	
-	public Boolean  existeUsuario(String user, String pass) {
+	public Cliente existeUsuario(String user, String pass) {
 		return this.adapter.existeUsuario(user, pass);
 	}
 }

@@ -12,11 +12,14 @@ import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.salasagendamento.model.Cliente;
+import br.com.salasagendamento.model.Token;
 import br.com.salasagendamento.service.AutenticacaoService;
 import io.swagger.annotations.Api;
 
@@ -40,8 +43,8 @@ public class AutenticacaoController {
 		
 		LOG.info(">>>>>>>>>>>>>>>>>>>>> Iniciando AUTENTICACAO");
 		
-		Boolean usuarioExiste = service.autenticar(user, pass);
-		if (usuarioExiste) {
+		Cliente usuarioExiste = service.autenticar(user, pass);
+		if (!ObjectUtils.isEmpty(usuarioExiste)) {
 			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>> USUARIO E SENHA OK");
     		
 			String uuidKey = UUID.randomUUID().toString();
@@ -55,7 +58,7 @@ public class AutenticacaoController {
 
     		redisOperation.expire(uuidKey, (long) 360.0, TimeUnit.SECONDS);
     		
-			return ResponseEntity.ok(new Token(uuidKey));
+			return ResponseEntity.ok(new Token(uuidKey, usuarioExiste));
 		} else {
 			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>> USUARIO OU SENHA INVALIDOS");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

@@ -52,17 +52,15 @@ public class ClientePersistenceAdapter implements ClientePersistencePort {
 		return null;
 	}
 	@Override
-	public Boolean existeUsuario(String user, String pass) {
+	public Cliente existeUsuario(String user, String pass) {
 		
 		Autenticacao aut = new Autenticacao();
 		aut.setPass(pass);
 		aut.setUser(user);
-		
 		ClienteDocument findByAutenticacao = this.repository.findByAutenticacao(aut);
-		
 		if(ObjectUtils.isEmpty(findByAutenticacao)) {
-			return false;
+			return this.documentParaModel.parse(findByAutenticacao);
 		}
-		return true;
+		return null;
 	}
 }
