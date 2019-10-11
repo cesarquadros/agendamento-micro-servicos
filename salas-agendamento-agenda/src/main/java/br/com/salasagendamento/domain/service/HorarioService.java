@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -19,6 +21,8 @@ import br.com.salasagendamento.model.Agendamento.Status;
 
 @Service
 public class HorarioService {
+	
+	private Logger LOG = LoggerFactory.getLogger(HorarioService.class);
 	
 	@Autowired
 	private HorarioPersistenceAdapter horarioPersistence;
@@ -41,6 +45,9 @@ public class HorarioService {
 		filtro.setDataFinal(data);
 		filtro.setIdSala(idSala);
 		List<Agendamento> agendamentos = this.agendamentoAdapter.listarPorFiltro(filtro);
+		
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> agendamentos filtrados: " + agendamentos.size());
+		
 		return horariosDisponiveis(agendamentos, getTodosHorarios());
 	}
 	
@@ -52,8 +59,12 @@ public class HorarioService {
 					.filter(a -> a.getHora().equals(horario.toString()))
 					.findAny();
 			
+			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario: " + horario);
+			
 			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {
 				if(horario.isAfter(LocalTime.now()))horariosLivres.add(horario);
+				
+				LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Adicionado horario: " + horario);
 			}
 		});
 		

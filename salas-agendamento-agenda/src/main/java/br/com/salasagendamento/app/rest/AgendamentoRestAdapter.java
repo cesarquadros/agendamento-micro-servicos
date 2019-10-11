@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +30,8 @@ import io.swagger.annotations.Api;
 @Api(value = "Agendamento", tags = "Agendamento")
 public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	
-	private Logger log = org.slf4j.LoggerFactory.getLogger(AgendamentoRestAdapter.class);
+	private Logger LOG = LoggerFactory.getLogger(AgendamentoRestAdapter.class);
+	
 	@Autowired
 	private AgendamentoService agendamentoService;
 	@Autowired
@@ -43,7 +45,7 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	public ResponseEntity<Agendamento> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
 		Agendamento agendamento = this.dtoParaModel.parse(agendamentoDTO);
 		agendamento = this.agendamentoService.salvar(agendamento);
-		log.info(this.message.getMessage(MessageHelper.AGENDAMENTO_SUCESSO));
+		LOG.info(this.message.getMessage(MessageHelper.AGENDAMENTO_SUCESSO));
 		return ResponseEntity.ok(agendamento);
 	}
 
@@ -61,6 +63,7 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 
 	@Override
 	public ResponseEntity<List<LocalTime>> horariosDisponiveisPorData(@RequestParam(value = "data") String data, @RequestParam(value = "idSala") String idSala) {
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> horariosDisponiveisPorData");
 		LocalDate date = LocalDate.parse(data);
 		return ResponseEntity.ok(horarioService.getHorariosLivresDia(date, idSala));
 	}
