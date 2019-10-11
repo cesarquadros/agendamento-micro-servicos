@@ -58,7 +58,7 @@ public class ClientePersistenceAdapter implements ClientePersistencePort {
 		aut.setPass(pass);
 		aut.setUser(user);
 		ClienteDocument findByAutenticacao = this.repository.findByAutenticacao(aut);
-		if(ObjectUtils.isEmpty(findByAutenticacao)) {
+		if(!ObjectUtils.isEmpty(findByAutenticacao)) {
 			return this.documentParaModel.parse(findByAutenticacao);
 		}
 		return null;
