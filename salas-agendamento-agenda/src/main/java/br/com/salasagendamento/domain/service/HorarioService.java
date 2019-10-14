@@ -46,10 +46,10 @@ public class HorarioService {
 		filtro.setIdSala(idSala);
 		List<Agendamento> agendamentos = this.agendamentoAdapter.listarPorFiltro(filtro);
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> agendamentos filtrados: " + agendamentos.size());
-		return horariosDisponiveis(agendamentos, getTodosHorarios());
+		return horariosDisponiveis(agendamentos, getTodosHorarios(), data);
 	}
 	
-	private List<LocalTime> horariosDisponiveis(List<Agendamento> agendamentos, List<LocalTime> todosHorarios){
+	private List<LocalTime> horariosDisponiveis(List<Agendamento> agendamentos, List<LocalTime> todosHorarios, LocalDate data){
 		List<LocalTime> horariosLivres = new ArrayList<>();
 		todosHorarios.stream().forEach(horario -> {
 			Optional<Agendamento> find = agendamentos
@@ -57,10 +57,12 @@ public class HorarioService {
 					.filter(a -> a.getHora().equals(horario.toString()))
 					.findAny();
 			
-			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario: " + horario);
+			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario do servidor: " + LocalTime.now());
+			LocalTime plusHours = LocalTime.now().plusHours(5l);
+			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario Ajustado: " + plusHours);
 			
 			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {
-				if(horario.isAfter(LocalTime.now())) {
+				if(data.isAfter(LocalDate.now()) || horario.isAfter(plusHours)) {
 					horariosLivres.add(horario);
 					LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Adicionado horario: " + horario);
 				}

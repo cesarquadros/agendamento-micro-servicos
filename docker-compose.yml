@@ -18,9 +18,9 @@ services:
   mongo-agenda:
     image: mongo
     container_name: mongo-agenda
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    #command: mongod --smallfiles --logpath=/dev/null # --quiet
     volumes:
-      - ./data/db
+      - /data/db
     networks: 
       agendamento-network:
         ipv4_address: 192.168.0.40
@@ -44,9 +44,9 @@ services:
   mongo-cliente:
     image: mongo
     container_name: mongo-cliente
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    #command: mongod --smallfiles --logpath=/dev/null # --quiet
     volumes:
-      - ./data/db   
+      - /data/db   
     networks: 
       agendamento-network:
         ipv4_address: 192.168.0.50
@@ -68,9 +68,9 @@ services:
   mongo-sala:
     image: mongo
     container_name: mongo-sala
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    #command: mongod --smallfiles --logpath=/dev/null # --quiet
     volumes:
-      - ./data/db
+      - /data/db
     networks: 
       agendamento-network:
         ipv4_address: 192.168.0.70
