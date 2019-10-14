@@ -45,9 +45,7 @@ public class HorarioService {
 		filtro.setDataFinal(data);
 		filtro.setIdSala(idSala);
 		List<Agendamento> agendamentos = this.agendamentoAdapter.listarPorFiltro(filtro);
-		
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> agendamentos filtrados: " + agendamentos.size());
-		
 		return horariosDisponiveis(agendamentos, getTodosHorarios());
 	}
 	
@@ -62,14 +60,13 @@ public class HorarioService {
 			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario: " + horario);
 			
 			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {
-				if(horario.isAfter(LocalTime.now()))horariosLivres.add(horario);
-				
-				LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Adicionado horario: " + horario);
+				if(horario.isAfter(LocalTime.now())) {
+					horariosLivres.add(horario);
+					LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Adicionado horario: " + horario);
+				}
 			}
 		});
-		
-		
-		
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Quantidade de horarios adicionados: " + horariosLivres.size());
 		return horariosLivres;
 	}
 }
