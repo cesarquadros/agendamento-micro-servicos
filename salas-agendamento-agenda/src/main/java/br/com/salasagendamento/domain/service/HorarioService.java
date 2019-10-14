@@ -51,15 +51,15 @@ public class HorarioService {
 	
 	private List<LocalTime> horariosDisponiveis(List<Agendamento> agendamentos, List<LocalTime> todosHorarios, LocalDate data){
 		List<LocalTime> horariosLivres = new ArrayList<>();
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario do servidor: " + LocalTime.now());
+		LocalTime plusHours = LocalTime.now().plusHours(5l);
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario Ajustado: " + plusHours);
 		todosHorarios.stream().forEach(horario -> {
 			Optional<Agendamento> find = agendamentos
 					.stream()
 					.filter(a -> a.getHora().equals(horario.toString()))
 					.findAny();
 			
-			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario do servidor: " + LocalTime.now());
-			LocalTime plusHours = LocalTime.now().plusHours(5l);
-			LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario Ajustado: " + plusHours);
 			
 			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {
 				if(data.isAfter(LocalDate.now()) || horario.isAfter(plusHours)) {
