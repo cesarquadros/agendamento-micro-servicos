@@ -1,10 +1,12 @@
 package br.com.salasagendamento.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import br.com.salasagendamento.model.Agendamento.Status;
 
-public class AgendamentoDTO {
+public class AgendamentoDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private String cpfCliente;
 	private LocalDate dataAgendamento;
@@ -41,5 +43,10 @@ public class AgendamentoDTO {
 	}
 	public void setIdSala(String idSala) {
 		this.idSala = idSala;
+	}
+	@Override
+	public String toString() {
+		return "AgendamentoDTO [cpfCliente=" + cpfCliente + ", dataAgendamento=" + dataAgendamento + ", status="
+				+ status + ", hora=" + hora + ", idSala=" + idSala + "]";
 	}
 }
