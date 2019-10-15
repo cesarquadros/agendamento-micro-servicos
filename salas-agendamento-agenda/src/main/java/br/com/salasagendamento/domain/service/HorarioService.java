@@ -51,12 +51,11 @@ public class HorarioService {
 	}
 	
 	private List<LocalTime> horariosDisponiveis(List<Agendamento> agendamentos, List<LocalTime> todosHorarios, LocalDate data){
+		ZoneId zoneBr = ZoneId.of("Brazil/East");
 		List<LocalTime> horariosLivres = new ArrayList<>();
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario do servidor: " + LocalTime.now());
-		LocalTime plusHours = LocalTime.now().plusHours(5l);
+		LocalTime plusHours = LocalTime.now(zoneBr);
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario Ajustado: " + plusHours);
-		
-		ZoneId zoneBr = ZoneId.of("Brazil/East");
 		LocalDate now = LocalDate.now(zoneBr);
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Brasil: " + now);
 		
