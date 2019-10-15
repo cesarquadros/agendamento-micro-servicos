@@ -2,6 +2,7 @@ package br.com.salasagendamento.domain.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,15 +55,19 @@ public class HorarioService {
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario do servidor: " + LocalTime.now());
 		LocalTime plusHours = LocalTime.now().plusHours(5l);
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Horario Ajustado: " + plusHours);
+		
+		ZoneId zoneBr = ZoneId.of("Brazil/East");
+		LocalDate now = LocalDate.now(zoneBr);
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Brasil: " + now);
+		
 		todosHorarios.stream().forEach(horario -> {
 			Optional<Agendamento> find = agendamentos
 					.stream()
 					.filter(a -> a.getHora().equals(horario.toString()))
 					.findAny();
 			
-			
 			if(ObjectUtils.isEmpty(find) || find.get().getStatus().equals(Status.CANCELADO)) {
-				if(data.isAfter(LocalDate.now()) || horario.isAfter(plusHours)) {
+				if(data.isAfter(now) || horario.isAfter(plusHours)) {
 					horariosLivres.add(horario);
 					LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> Adicionado horario: " + horario);
 				}
