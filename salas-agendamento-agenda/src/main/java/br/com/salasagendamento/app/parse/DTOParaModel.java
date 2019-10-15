@@ -21,6 +21,7 @@ public class DTOParaModel {
 		Agendamento agendamento = new Agendamento();
 		Cliente cliente = new Cliente();
 		cliente.setCpf(dto.getCpfCliente());
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>>>> CPF CLIENTE: " + dto.getCpfCliente());
 		
 		Sala sala = new Sala(dto.getIdSala(), null, null, null);
 		agendamento.setSala(sala);

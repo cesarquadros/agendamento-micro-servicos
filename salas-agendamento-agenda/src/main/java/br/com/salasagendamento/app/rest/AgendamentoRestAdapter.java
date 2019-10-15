@@ -43,7 +43,7 @@ public class AgendamentoRestAdapter implements AgendamentoRestPort {
 	
 	@Override
 	public ResponseEntity<Agendamento> salvar(@RequestBody AgendamentoDTO agendamentoDTO) {
-		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>> Serviço de agendamento - AgendamentoDTo === "+ agendamentoDTO.toString());
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>> CPF "+ agendamentoDTO.getCpfCliente());
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>> data "+ agendamentoDTO.getDataAgendamento());
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>> Hora "+ agendamentoDTO.getHora());
 		LOG.info(">>>>>>>>>>>>>>>>>>>>>>>>> Status "+ agendamentoDTO.getStatus());
