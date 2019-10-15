@@ -18,7 +18,7 @@ public interface SalaRestPort {
 	ResponseEntity<Sala>findById(@PathVariable(value = "id") String id);
 	
 	@GetMapping(value = "${salas-agendamento-sala.request.mapping.salas.getSalas}")
-	ResponseEntity<List<SalaDocument>> getSalas();
+	ResponseEntity<List<Sala>> getSalas();
 
 	@PostMapping(value = "${salas-agendamento-sala.request.mapping.salas.salvar}", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<SalaDocument> salvar(@RequestBody SalaDocument salaDocument);

@@ -25,7 +25,7 @@ public class SalaRestAdapter implements SalaRestPort {
 	}
 
 	@Override
-	public ResponseEntity<List<SalaDocument>> getSalas() {
+	public ResponseEntity<List<Sala>> getSalas() {
 		return ResponseEntity.ok(service.getSalas());
 	}
 
