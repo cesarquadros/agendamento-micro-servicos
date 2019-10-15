@@ -1,5 +1,7 @@
 package br.com.salasagendamento.integration.feign.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,10 @@ public class ClienteFeignService {
 	@Autowired
 	private ClienteIntegration clienteIntegration;
 	
+	private Logger LOG = LoggerFactory.getLogger(ClienteIntegration.class);
+	
 	public Cliente findClienteByCpf(String cpf) {
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>> Realizando integração com serviço cliente");
 		try {
 			ResponseEntity<?> respostaCliente = this.clienteIntegration.findByCpf(cpf);
 			if(ObjectUtils.isEmpty(respostaCliente.getBody())) {

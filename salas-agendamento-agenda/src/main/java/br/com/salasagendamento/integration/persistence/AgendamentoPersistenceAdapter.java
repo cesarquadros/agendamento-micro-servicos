@@ -3,6 +3,8 @@ package br.com.salasagendamento.integration.persistence;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
@@ -38,16 +40,23 @@ public class AgendamentoPersistenceAdapter implements AgendamentoPersistencePort
 	@Autowired
 	private SalaFeignService salaIntegration;
 	
+	private Logger LOG = LoggerFactory.getLogger(AgendamentoPersistenceAdapter.class);
+	
 	@Override
 	public Agendamento salvar(Agendamento agendamento) {
+		LOG.info(">>>>>>>>>>>>>>> SALVAR");
 		Cliente cliente = this.serviceCliente.findClienteByCpf(agendamento.getCliente().getCpf());
 		if(ObjectUtils.isEmpty(cliente)) {
 			throw new AgendamentoException("Nao existe cadastro para esse CPF");
 		}
 		
+		LOG.info(">>>>>>>>>>>>>>> INTEGRAÇÃO SALA");
 		Sala sala = this.salaIntegration.findSalaById(agendamento.getSala().getIdSala());
 		
 		AgendamentoDocument agendamentoDoc = this.dtoParaDoc.parse(agendamento, cliente, sala);
+		
+
+		LOG.info(">>>>>>>>>>>>>>> SALVANDO AGENDAMENTO");
 		this.agendamentoRepository.save(agendamentoDoc);
 		agendamento.setId(agendamentoDoc.getId());
 		agendamento.setCliente(agendamentoDoc.getCliente());
