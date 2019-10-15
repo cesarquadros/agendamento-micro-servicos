@@ -3,6 +3,8 @@ package br.com.salasagendamento.integration.persistence;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
@@ -25,6 +27,8 @@ public class ClientePersistenceAdapter implements ClientePersistencePort {
 	@Autowired
 	private DocumentParaModel documentParaModel;
 	
+	private Logger LOG = LoggerFactory.getLogger(ClientePersistenceAdapter.class);
+	
 	@Override
 	public Cliente salvar(Cliente cliente) {
 		ClienteDocument clienteDocument = this.modelParaDocument.parse(cliente);
@@ -41,8 +45,10 @@ public class ClientePersistenceAdapter implements ClientePersistencePort {
 	}
 	@Override
 	public Cliente findByCpf(String cpf) {
+		LOG.info(">>>>>>>>>>>>>>>>>> Realizando consulta do cliente: " + cpf); 
 		ClienteDocument clienteDoc = this.repository.findByCpf(cpf);
 		if(!ObjectUtils.isEmpty(clienteDoc)) {
+			LOG.info(">>>>>>>>>>>>>>>>>> Cliente Existe, realizando conversão");
 			return this.documentParaModel.parse(clienteDoc);
 		}
 		return null;

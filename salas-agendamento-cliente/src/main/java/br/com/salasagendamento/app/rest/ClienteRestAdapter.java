@@ -2,6 +2,8 @@ package br.com.salasagendamento.app.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,8 @@ public class ClienteRestAdapter implements ClienteRestPort {
 	private ClienteService service;
 	@Autowired
 	private DTOParaModel dtoParaModel;
+	
+	private Logger LOG = LoggerFactory.getLogger(ClienteRestAdapter.class);
 
 	@Override
 	public ResponseEntity<Cliente> salvar(@RequestBody ClienteDTO clienteDTO) {
@@ -44,6 +48,7 @@ public class ClienteRestAdapter implements ClienteRestPort {
 	
 	@Override
 	public ResponseEntity<Object> findByCpf(@PathVariable(value = "cpf") String cpf) {
+		LOG.info(">>>>>>>>>>>>>>> Consultando cliente: "+cpf);
 		Cliente cliente = this.service.findByCpf(cpf);
 		if(ObjectUtils.isEmpty(cliente)) {
 			ResponseEntity<Object> response = new ResponseEntity<>(HttpStatus.NO_CONTENT);

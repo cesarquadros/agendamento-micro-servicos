@@ -22,12 +22,14 @@ public class ClienteFeignService {
 	private Logger LOG = LoggerFactory.getLogger(ClienteIntegration.class);
 	
 	public Cliente findClienteByCpf(String cpf) {
-		LOG.info(">>>>>>>>>>>>>>>>>>>>>>> Realizando integração com serviço cliente");
+		LOG.info(">>>>>>>>>>>>>>>>>>>>>>> Realizando integração com serviço cliente: " + cpf);
 		try {
 			ResponseEntity<?> respostaCliente = this.clienteIntegration.findByCpf(cpf);
+			LOG.info(">>>>>>>>>>>>>>>>>>>>>>> INTEGRAÇÃO REALIZADA");
 			if(ObjectUtils.isEmpty(respostaCliente.getBody())) {
 				return null;
 			}
+			LOG.info(">>>>>>>>>>>>>>>>>>>>>>> Retornando");
 			return (Cliente) respostaCliente.getBody();
 		} catch (Exception e ) {
 			throw new AgendamentoException(ERRO_COMUNICACAO_SERVICO_CLIENTE + e);
