@@ -1,5 +1,6 @@
 package br.com.salasagendamento.integration.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,20 +22,26 @@ public class SalaPersistenceAdapter implements SalaPersistencePort{
 	public Sala findById(String id) {
 		Optional<SalaDocument> doc = this.repository.findById(id);
 		if(doc.isPresent()) {
-			
-			Sala sala = new Sala(doc.get().getId(), 
+			return new Sala(doc.get().getId(), 
 					doc.get().getNome(), 
 					doc.get().getDescricao(), 
 					doc.get().getUnidade());
-			
-			return sala;
 		}
 		return null;
 	}
 
 	@Override
-	public List<SalaDocument> getSalas() {
-		return this.repository.findAll();
+	public List<Sala> getSalas() {
+		List<SalaDocument> findAll = this.repository.findAll();
+		List<Sala> salas = new ArrayList<>();
+		findAll.forEach(s -> {
+			Sala sala = new Sala(s.getId(), 
+					s.getNome(), 
+					s.getDescricao(), 
+					s.getUnidade());
+			salas.add(sala);
+		});
+		return salas;
 	}
 
 	@Override

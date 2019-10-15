@@ -19,7 +19,7 @@ public class SalaService {
 		return this.adapter.findById(id);
 	}
 	
-	public List<SalaDocument> getSalas(){
+	public List<Sala> getSalas(){
 		return this.adapter.getSalas();
 	}
 
