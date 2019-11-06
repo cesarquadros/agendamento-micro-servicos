@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,7 @@ import br.com.salasagendamento.document.SalaDocument;
 import br.com.salasagendamento.domain.service.SalaService;
 import br.com.salasagendamento.model.Sala;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class SalaRestAdapter implements SalaRestPort {
 

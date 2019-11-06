@@ -16,3 +16,5 @@ salas-agendamento-api/\.mvn/wrapper/maven-wrapper\.jar
 salas-agendamento-api/\.mvn/wrapper/maven-wrapper\.properties
 
 salas-agendamento-api/\.mvn/wrapper/MavenWrapperDownloader\.java
+
+salas-agendamento-gateway/logs/
