@@ -20,7 +20,10 @@ zuul:
     ms-cliente:
       path: /ms-cliente/**  
       serviceId: salas-agendamento-cliente
-      
+  ignored-headers:
+  - Access-Control-Allow-Credentials
+  - Access-Control-Allow-Origin
+
 spring:
   redis:
 #    host: 192.168.0.200       
