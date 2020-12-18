@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/salas-agendamento-agenda/salas-agendamento-agenda.iml" filepath="$PROJECT_DIR$/salas-agendamento-agenda/salas-agendamento-agenda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/salas-agendamento-cliente/salas-agendamento-cliente.iml" filepath="$PROJECT_DIR$/salas-agendamento-cliente/salas-agendamento-cliente.iml" />
+      <module fileurl="file://$PROJECT_DIR$/salas-agendamento-discovery/salas-agendamento-discovery.iml" filepath="$PROJECT_DIR$/salas-agendamento-discovery/salas-agendamento-discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/salas-agendamento-gateway/salas-agendamento-gateway.iml" filepath="$PROJECT_DIR$/salas-agendamento-gateway/salas-agendamento-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/salas-agendamento-model/salas-agendamento-model.iml" filepath="$PROJECT_DIR$/salas-agendamento-model/salas-agendamento-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/salas-agendamento-sala/salas-agendamento-sala.iml" filepath="$PROJECT_DIR$/salas-agendamento-sala/salas-agendamento-sala.iml" />
+      <module fileurl="file://$PROJECT_DIR$/salasagendamento.iml" filepath="$PROJECT_DIR$/salasagendamento.iml" />
+    </modules>
+  </component>
+</project>

@@ -959,3 +959,44 @@ com.mongodb.MongoTimeoutException: Timed out after 30000 ms while waiting to con
 2019-05-23 16:21:14.064  INFO 30721 --- [http-nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 35 ms
 2019-05-23 16:21:14.108  INFO 30721 --- [http-nio-8083-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:74, serverValue:344}] to localhost:27017
 2019-05-23 16:26:03.220  INFO 30721 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2020-12-17 20:08:17.534  INFO 19201 --- [main] c.s.SalasAgendamentoSalaApplicationTests : No active profile set, falling back to default profiles: default
+2020-12-17 20:08:18.023  INFO 19201 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-12-17 20:08:18.126  INFO 19201 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98ms. Found 2 repository interfaces.
+2020-12-17 20:08:18.372  INFO 19201 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=e2cb6645-ef99-3ad4-ae36-26b826540849
+2020-12-17 20:08:18.505  INFO 19201 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$90523c9c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-17 20:08:18.765  INFO 19201 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[mongo-sala:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-12-17 20:08:19.026  INFO 19201 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Unidade' for path 'unidade -> listaSalas -> unidade'
+2020-12-17 20:08:19.028  INFO 19201 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'unidade' in type 'Sala' for path 'unidade -> listaSalas -> unidade'
+2020-12-17 20:08:19.028  INFO 19201 --- [cluster-ClusterId{value='5fdbe4e25401f54b0150f169', description='null'}-mongo-sala:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server mongo-sala:27017
+
+com.mongodb.MongoSocketException: mongo-sala: Nome ou serviço desconhecido
+	at com.mongodb.ServerAddress.getSocketAddress(ServerAddress.java:188) ~[mongodb-driver-core-3.8.2.jar:na]
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:64) ~[mongodb-driver-core-3.8.2.jar:na]
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:62) ~[mongodb-driver-core-3.8.2.jar:na]
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:126) ~[mongodb-driver-core-3.8.2.jar:na]
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:117) ~[mongodb-driver-core-3.8.2.jar:na]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_275]
+Caused by: java.net.UnknownHostException: mongo-sala: Nome ou serviço desconhecido
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method) ~[na:1.8.0_275]
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:929) ~[na:1.8.0_275]
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1324) ~[na:1.8.0_275]
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1277) ~[na:1.8.0_275]
+	at java.net.InetAddress.getAllByName(InetAddress.java:1193) ~[na:1.8.0_275]
+	at java.net.InetAddress.getAllByName(InetAddress.java:1127) ~[na:1.8.0_275]
+	at java.net.InetAddress.getByName(InetAddress.java:1077) ~[na:1.8.0_275]
+	at com.mongodb.ServerAddress.getSocketAddress(ServerAddress.java:186) ~[mongodb-driver-core-3.8.2.jar:na]
+	... 5 common frames omitted
+
+2020-12-17 20:08:19.029  INFO 19201 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'idSala' in type 'Sala' for path 'listaSalas -> unidade -> listaSalas'
+2020-12-17 20:08:19.030  INFO 19201 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'listaSalas' in type 'Unidade' for path 'listaSalas -> unidade -> listaSalas'
+2020-12-17 20:08:19.031  INFO 19201 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field '_id' in type 'Unidade' for path 'unidade -> listaSalas -> unidade'
+2020-12-17 20:08:19.031  INFO 19201 --- [main] m.c.i.MongoPersistentEntityIndexResolver : Found cycle for field 'unidade' in type 'Sala' for path 'unidade -> listaSalas -> unidade'
+2020-12-17 20:08:19.291  WARN 19201 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-12-17 20:08:19.291  INFO 19201 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-12-17 20:08:19.296  WARN 19201 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2020-12-17 20:08:19.296  INFO 19201 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2020-12-17 20:08:19.696  INFO 19201 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-17 20:08:20.306  INFO 19201 --- [main] c.s.SalasAgendamentoSalaApplicationTests : Started SalasAgendamentoSalaApplicationTests in 3.442 seconds (JVM running for 4.166)
+2020-12-17 20:08:20.512  INFO 19201 --- [Thread-6] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2020-12-17 20:08:20.514  INFO 19201 --- [Thread-6] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application SALAS-AGENDAMENTO-SALA with eureka with status DOWN
+2020-12-17 20:08:20.516  INFO 19201 --- [Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

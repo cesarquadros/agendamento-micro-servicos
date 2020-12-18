@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="salas-agendamento-cliente" />
+        <module name="salas-agendamento-agenda" />
+        <module name="salas-agendamento-sala" />
+        <module name="salas-agendamento-gateway" />
+        <module name="salas-agendamento-model" />
+        <module name="salas-agendamento-discovery" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="salas-agendamento-agenda" target="1.8" />
+      <module name="salas-agendamento-cliente" target="1.8" />
+      <module name="salas-agendamento-discovery" target="1.8" />
+      <module name="salas-agendamento-gateway" target="1.8" />
+      <module name="salas-agendamento-model" target="1.8" />
+      <module name="salas-agendamento-sala" target="1.8" />
+      <module name="salasagendamento" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="salas-agendamento-agenda" options="-parameters" />
+      <module name="salas-agendamento-cliente" options="-parameters" />
+      <module name="salas-agendamento-discovery" options="-parameters" />
+      <module name="salas-agendamento-gateway" options="-parameters" />
+      <module name="salas-agendamento-sala" options="-parameters" />
+    </option>
+  </component>
+</project>

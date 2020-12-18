@@ -2,10 +2,7 @@ version: '3'
 services:
   #------------------------------------------ Servicos Agendamento
   servico-agenda:
-    build: 
-      dockerfile: ./docker-agenda.dockerfile
-      context: .
-    image: imagem-agenda
+    image: cesarquadros/ms_agenda
     container_name: servico-agenda
     ports: 
       - 8081:8081
@@ -28,10 +25,7 @@ services:
   
   #--------------------------------------------- Servico Cliente
   servico-cliente:
-    build: 
-      dockerfile: ./docker-cliente.dockerfile
-      context: .
-    image: imagem-cliente
+    image: cesarquadros/ms_cliente
     container_name: servico-cliente
     ports: 
       - 8082:8082
@@ -54,10 +48,7 @@ services:
   
   #------------------------------------------ Servico Sala
   servico-sala:
-    build: 
-      dockerfile: ./docker-sala.dockerfile
-      context: .
-    image: imagem-sala
+    image: cesarquadros/ms_sala
     container_name: servico-sala
     ports: 
       - 8083:8083
@@ -79,10 +70,7 @@ services:
 
   #------------------------------------------ Servico gateway
   servico-gateway:
-    build: 
-      dockerfile: ./docker-gateway.dockerfile
-      context: .
-    image: imagem-gateway
+    image: cesarquadros/ms_gateway
     container_name: servico-gateway
     ports: 
       - 9091:9091
@@ -104,10 +92,7 @@ services:
   #----------------------------------------------------------------------------------------------------------------------------------------------  
   #------------------------------------------ Servico gateway
   servico-discovery:
-    build: 
-      dockerfile: ./docker-discovery.dockerfile
-      context: .
-    image: imagem-discovery
+    image: cesarquadros/ms_discovery
     container_name: servico-discovery
     ports: 
       - 9090:9090
